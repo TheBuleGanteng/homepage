@@ -1,0 +1,205 @@
+{% extends 'homepage/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Matt McDonnell</title>
+<link rel="canonical" href="https://mattmcdonnell.net"/>
+<meta name="description" content="Homepage for Matthew McDonnell, CFA. Reviews work Matthew McDonnell has done in Finance and Technology in both the United States and in Southeast Asia, including time at Boston Consulting Group (BCG), Tokobox (Indonesian social commerce), and ReturnKey (Southeast Asia reverse logistics). Also showcases Matthew McDonnell's work in programming in python, javascript, html, css, and django.">
+{% endblock %}
+
+{% block main %}
+  <!-- Section: Top container w/ 2 columns for photo + welcome. Note: two columns will go from vertical layout to horizontal layout if screen size > sm -->
+  <section id="index_intro">
+    <div class="container text-start pt-3">
+      <div class="row">
+        <!-- Left column = photo of me -->
+        <div class="col">                    
+          <a> <img class='img-fluid' src='{% static "assets/matt_photo.png" %}' target='_blank' alt="Matt's photo"></a>
+        </div>
+
+        <!-- Right column = welcome in various languages -->
+        <div class="col-8 text-center text-md-start me-2">
+          <div class="container_index">
+            <h1 class="display-3">Welcome</h1>
+          </div>
+          <h2 class="animate display-4 slideInLeft animate--fast mt-1 mb-1">Selamat datang</h1>
+          <h3 class="animate display-5 slideInRight mt-4 mb-4">Willkommen</h1>
+          <h4 class="animate display-6 slideInLeft animate--slow mt-1 mb-1">Fáilte</h1>
+          <!-- <h5 class="display-7_welcome fs-medium mt-4 mb-4">ยินดีต้อนรับ</h1> -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+
+  <!-- Section: CV  -->
+  <section id = "index_cv">
+    <div class="container-fluid text-start pt-3 pb-3">
+      <div class="row justify-content-center align-items-center text-start">  
+        <h1 class="display-6">About me</h1>
+          <p class="lead">
+              As a former BCG consultant and 2x Co-Founder, I help early-stage companies professionalize their operations by getting my hands dirty. 
+          </p>
+          <p class="lead">
+            My professional experience includes the following: 
+        </p>
+      </div>
+
+      <!-- Starting accordion -->            
+      <div class="accordion accordion-flush text-start" id="index_accordion">
+          
+        <!-- First accordion item. -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Advisor, Returnkey (2022-2023)
+            </button>
+          </h4>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Ongoing ad-hoc support to the startup I co-founded in 2020</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second accordion item. -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Co-Founder, COO, ReturnKey (2020-2022)
+            </button>
+          </h4>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Took an idea from zero to one by assembling and enabling a world-class team.</strong>
+                <ul>
+                  <li>Built the organization’s operations, finance, and administrative teams, incl. JD creation, candidate evaluation, culture building, and development of employee evaluation and growth frameworks</li>
+                  <li>Designed, tested, and approved product updates for release</li>
+                  <li>Designed, implemented, and managed operational stopgaps for product features awaiting delivery</li>
+                  <li>Drove all legal and compliance initiatives associated with company establishment, licensing, and regulatory adherence</li>                    
+                </ul>
+            </div>
+          </div>
+        </div>              
+        
+        <!-- Third accordion item -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Saison Capital Scout, 2020-2022
+            </button>
+          </h4>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Initial screening of SEA-based startups interested in raising venture funding.</strong>
+              <p>Credit Saison is a Tokyo-listed $30B AUM consumer finance company and one of the largest credit card issuers in Japan. I support the corporate venture arm where we do direct and fund of fund investments.</p>
+              <p>Saison Capital's investments include Grab, where we helped to build its business finance unit, Shopback (Softbank/Temasek-backed), and other startups such as Ula (B2B e-commerce) Bukukas (Digital Bookkeeping), and Koinworks (SME lending). Saison Capital's LP investments include some of the top-performing funds in SEA (East Ventures, Beenext), and global funds such as Quona Capital, Better Tomorrow Ventures, and Antler.</p>
+              <p>Find out more at www.saisoncapital.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth accordion item. -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Co-Founder, CEO, Tokobox (2019-2020)
+            </button>
+          </h4>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Raised initial funding, designed and led operations.</strong>
+              <p>Tokobox was a social commerce platform that used social media to allow rural Indonesians to build their own business by selling dropshipped items to their friends, family, and neighbors. By integrating into pre-existing consumer behaviors, Tokobox sought to bring e-commerce to the >90% of Indonesians who do not currently use major e-commerce platforms.</p>
+              
+              <p>Responsibilities included managing daily operations across >1,000 registered sellers, building an awesome team, and exciting investors about our prospects.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fifth accordion item. -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Project Leader (Manager), Boston Consulting Group (2018-2019)
+            </button>
+          </h4>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Responsible for project team and client relationship management</strong>
+              <ul>
+                <li>SME banking transformation at a leading regional bank.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sixth accordion item. -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Consultant, Boston Consulting Group (2016-2018)
+            </button>
+          </h4>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Experience across industries (Financial Services, Energy, and Life Sciences) and geographies in South East Asia. Functional experience includes:</strong>
+              <ul>
+                <li>Fintech business design and launch</li>
+                <li>Commercial due diligence in financial services</li>
+                <li>Market entry for middle-office financial services</li>
+                <li>Lean production system implementation for a global biopharma</li>
+                <li>Organizational transformation for a leading regional energy company</li>
+              </ul>
+            </div>
+          </div>
+        </div>              
+        
+      <!-- Close div for accordion -->
+      </div>
+    <!-- Close div for container holding cv content-->
+    </div>      
+  <!-- Close CV section-->
+  </section>
+  
+  <hr>
+  
+  <!-- Section: CV  -->
+  <section id = "index_products_preview">
+    <div class="container-fluid text-start pt-2 mb-5">
+      <h1 class="display-6">Things I've built</h1>
+      <p class="lead">
+        I'm currently finishing <a href="https://cs50.harvard.edu/x/2023/" target="_blank" class="link">C50 by HarvardX</a>. Code for everything below (except code for CS50 assignments) is available on <a href="https://github.com/TheBuleGanteng" target="_blank" class="link">GitHub</a>.
+      </p>
+    </div>
+
+    <!-- The parent container to hold all examples -->
+    <div class="container-fluid text-start">
+      
+      <!-- Child container: Finance -->
+      <div class="col-sm-4">
+        <div class="row">
+          <img class="img-thumbnail" src='{% static "homepage/assets/finance_screenshot1.png" %}'  target='_blank' alt='Finance Screenshot 1'>
+        </div>
+        <div class="row-sm-4">
+          C$50 Finance: A mock brokerage account that allows for the purchase and sale of stocks and uses real-time stock prices. (CS50 Week 9)
+        </div>
+        <div class="row-sm-4">
+          <a href="https://apps-cs50finance.as.r.appspot.com/"> <button type="button" class="btn btn-primary btn-lg">Launch App</button></a>
+        </div>
+      </div>
+    
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section: CV  -->
+  <section id = "index_substack_feed">
+    <div class="container-fluid text-start pt-2 mb-5">
+      <div class="row justify-content-center align-items-center text-start">  
+        <h1 class="display-6 mt-1 mb-3">Things I've written</h1>
+        <div id="substack-feed-embed"></div>   
+    </div>
+  </section>
+  <br> 
+{% endblock %}
