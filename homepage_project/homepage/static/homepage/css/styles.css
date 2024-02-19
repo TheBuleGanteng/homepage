@@ -2,47 +2,79 @@
 /* Custom CSS */
 
 
-.fixed-height-navbar {
-  max-height: 20px;
+.error {
+  align-content: center;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+  color: red;
+  display: block !important;
+  font-size: 15px;
+  font-style: italic;
+  flex-grow: 1;
+  position: relative;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }
 
-.fixed-height-img-60px {
+
+
+#tokobox-demo-gif {
+  max-height: 700px;
+}
+
+.no-margin-no-padding {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.section {
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.section.bottom-border {
+  border-bottom: 1px solid lightgray;
+}
+
+#substack-feed-embed .sfw-theme-default { 
+  --sfw-primary-color: lightgray; 
+  --sfw-secondary-color:lightgray;
+  --sfw-background-color: var(--bs-gray-dark) 
+}
+
+#substack-feed-embed a.flex.flex-row-reverse { 
+  border-bottom: 1px solid lightgrey; 
+}
+
+.footer {
+  background-color: inherit;
+  border-top:1px solid darkgray ;
+}
+
+
+.navbar-fixed-height-img {
   height: 100%;
-  max-height: 60px; 
+  max-height: 30px;
+  vertical-align: bottom;
+}
+
+.navbar-fixed-height-logo {
+  height: 100%;
+  margin-left: 1px;
+  margin-right: 1px;
+  max-height: 30px; 
+}
+
+.sitemap-link {
+  font-size: xx-small; 
+  color: rgb(40, 40, 40);
 }
 
 
 
-
-
-
-
-/* Size for MyFinance50 in navbar */
-nav .navbar-brand
-{
-    font-size: xx-large;
-}
-
-/* Size for MyFinance50 in navbar */
-nav .navbar-brand .blue
-{
-    color: #537fbe;
-}
-nav .navbar-brand .red
-{
-    color: #ea433b;
-}
-nav .navbar-brand .yellow
-{
-    color: #f5b82e;
-}
-nav .navbar-brand .green
-{
-    color: #2e944b;
-}
-
-
-/* Additional CSS I've added */
 .colspan_td {
   padding-top: 0;
   padding-bottom: 0;
@@ -131,6 +163,47 @@ th {
     font-weight: bold;
     text-align: start;
 }
+
+
+#index-intro {
+  height: 25vh;
+  display: flex; /* Enables Flexbox layout for this container */
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically */
+  text-align: center; /* Centers the text within the span, if needed */
+}
+
+
+.text.typewriter {
+  color: var(--bs-orange);
+  font-family: var(--bs-font-monospace);
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.text.typewriter.primary {
+  color: whitesmoke;
+}
+
+.text.typewriter.secondary {
+  position: relative;
+  padding-right: 20px;
+}
+
+.text.typewriter.secondary:after {
+  content: '|';
+  position: absolute;
+  right: 0;
+  top: 0; /* Aligns the cursor with the top of the text */
+  animation: blink-cursor 1s steps(2) infinite;
+}
+
+@keyframes blink-cursor {
+  100% { opacity: 0; }
+}
+
+
+
 
 select {
     /* styling */
@@ -368,8 +441,8 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+  color: lightgrey; /* CUSTOMIZATION : was black */
+  background-color: #212529; /* CUSTOMIZATION : was #fff */
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -801,10 +874,38 @@ progress {
 }
 
 .display-3 {
-  font-size: calc(1.525rem + 3.3vw);
+  font-family: monospace;
+  font-size: calc(1.475rem + 2.7vw);
   font-weight: 300;
   line-height: 1.2;
+  letter-spacing: .15em;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  display: inline-block; /* Container width matches content */
+  border-right: .15em solid black; /* Simulates the cursor */
+  animation: 
+    typing 2s steps(7, end) forwards, /* Typing animation */
+    blinkCursor 1s step-end infinite; /* Cursor blink extended beyond typing */
 }
+
+/* Typewriter typing animation */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 9ch; } /* Adjust to fit "Welcome" */
+}
+
+/* Cursor blink animation */
+@keyframes blinkCursor {
+  25%, 100% { border-right-color: transparent; }
+  50% { border-right-color: black; }
+}
+
+
+
+
+
+
 @media (min-width: 1200px) {
   .display-3 {
     font-size: 4rem;
@@ -4172,7 +4273,7 @@ textarea.form-control-lg {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0; /* CUSTOMIZATION : WAS 0.5rem 1rem */
   color: #0d6efd;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
@@ -4236,14 +4337,14 @@ textarea.form-control-lg {
 .nav-fill > .nav-link,
 .nav-fill .nav-item {
   flex: 1 1 auto;
-  text-align: center;
+  text-align: end; /* CUSTOMIZATION : WAS CENTER */
 }
 
 .nav-justified > .nav-link,
 .nav-justified .nav-item {
   flex-basis: 0;
   flex-grow: 1;
-  text-align: center;
+  text-align: end; /* CUSTOMIZATION : WAS CENTER */
 }
 
 .nav-fill .nav-item .nav-link,
@@ -4262,10 +4363,11 @@ textarea.form-control-lg {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: end; /* CUSTOMIZATION : WAS CENTER */
   justify-content: space-between;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  border-bottom: 1px solid lightgray;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -4279,19 +4381,34 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
 }
+
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  margin-right: 1rem;
-  font-size: 1.25rem;
+  padding-top: 0; /* CUSTOMIZATION : WAS 0.3125rem */
+  padding-bottom: 0; /* CUSTOMIZATION : WAS 0.3125rem */
+  margin-right: 0; /* CUSTOMIZATION : WAS 1rem */
+  font-size: 1.0rem; 
   text-decoration: none;
   white-space: nowrap;
 }
+
+/* Media query for medium screens (768px) and up */
+@media (min-width: 768px) {
+  .navbar-brand {
+    font-size: 1.5rem; /* Larger font size for medium screens and up */
+  }
+}
+
+
 .navbar-nav {
+  align-items: end;
   display: flex;
   flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
+  height: 100%; /* CUSTOMIZATION : ADDED */
+  padding-left: 5px; /* CUSTOMIZATION : ADDED */
+  padding-top: 0; 
+  padding-bottom: 0; /* CUSTOMIZATION : ADDED */
+  margin-top: 0; /* CUSTOMIZATION : ADDED */
+  margin-bottom: 0; /* CUSTOMIZATION : ADDED */
   list-style: none;
 }
 .navbar-nav .nav-link {
@@ -4310,7 +4427,7 @@ textarea.form-control-lg {
 .navbar-collapse {
   flex-basis: 100%;
   flex-grow: 1;
-  align-items: center;
+  align-items: end; /* CUSTOMIZATION: WAS CENTER */
 }
 
 .navbar-toggler {
@@ -4363,8 +4480,8 @@ textarea.form-control-lg {
     position: absolute;
   }
   .navbar-expand-sm .navbar-nav .nav-link {
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 0; /* CUSTOMIZATION : WAS 0.5rem */
+    padding-left: 0; /* CUSTOMIZATION : WAS 0.5rem */
   }
   .navbar-expand-sm .navbar-nav-scroll {
     overflow: visible;
@@ -4747,7 +4864,7 @@ textarea.form-control-lg {
   font-weight: bold; /* CUSTOMIZATION */
   color: #212529;
   text-align: left;
-  background-color: #e3e3e3; /* CUSTOMIZATION */
+  background-color: var(--bs-orange); /* CUSTOMIZATION */
   border: 0;
   border-radius: 0;
   overflow-anchor: none;
@@ -4759,8 +4876,8 @@ textarea.form-control-lg {
   }
 }
 .accordion-button:not(.collapsed) {
-  color: #0c63e4;
-  background-color: #e7f1ff;
+  color: inherit; /* CUSTOMIZATION : WAS #0c63e4 */ 
+  background-color: #ffa50066; /* CUSTOMIZATION : WAS #e7f1ff */
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
 }
 .accordion-button:not(.collapsed)::after {
@@ -4788,9 +4905,9 @@ textarea.form-control-lg {
 }
 .accordion-button:focus {
   z-index: 3;
-  border-color: #86b7fe;
+  border-color: var(--bs-orange); /* CUSTOMIZATION: WAS #86b7fe */
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(255, 165, 0, 0.25);
 }
 
 .accordion-header {

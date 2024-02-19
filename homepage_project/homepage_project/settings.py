@@ -10,7 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from dotenv import load_dotenv
+import os
 from pathlib import Path
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,17 +24,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
+# Use .env file to set project environment, with 'dev' as the fallback
+PROJECT_ENV = os.getenv('ENVIRONMENT', 'development')
+print(f'starting project... PROJECT_ENV is: { PROJECT_ENV}')
+
+# Set app mode according to setting in .env above
+if PROJECT_ENV == 'testing':
+    from configs_project.config_testing import *
+elif PROJECT_ENV == 'production':
+    from configs_project.config_prod import *
+else:
+    from configs_project.config_dev import *
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-yu#v5@udwdz^#4lt7%5^otk6xx((pvr&89%te*h%dqs)13$b1a"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+SECRET_KEY = os.getenv('SECRET_KEY')
+if SECRET_KEY:
+    print(f'running settings.py ... SECRET KEY loaded')
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'homepage',
     "django.contrib.admin",
@@ -70,10 +83,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "homepage_project.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -84,7 +95,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -105,13 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

@@ -5,6 +5,8 @@ from . import views
 app_name = 'homepage'
 
 urlpatterns = [
-    path("", views.index, name='index')
-    
+    path('', views.index, name='index'),
+    path('contact', views.contact, name='contact'),
+    path('returnkey', views.returnkey, name='returnkey'),
+    path('tokobox', views.tokobox, name='tokobox')
 ]

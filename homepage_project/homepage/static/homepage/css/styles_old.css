@@ -63,12 +63,14 @@
 
 /* Blinking cursor for typewriter animation */
 @keyframes cursor {
-  50% { border-color: transparent}
+  from, to { border-color: transparent }
+  50% { border-color: darkslategrey}
 }
 
 /* Typewriter typing animation */
 @keyframes typing {
   from { width: 0}
+  to { width: 100% }
 }
 
 
@@ -142,17 +144,14 @@ body {
 }
 
 .display-3 {
-  font-size: calc(1.475rem + 2.7vw);
-  font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: 10px;
   border-right: 5px solid;
-  width: 100%;
+  letter-spacing: 1px;
+  margin: 0 auto;
   white-space: nowrap;
   overflow: hidden;
   animation:
-    typing 1.5s steps(7),
-    cursor .8s step-end infinite alternate;
+    typing 2s steps(7, end),
+    blink-caret .75s step-end infinite;
 }
 
 

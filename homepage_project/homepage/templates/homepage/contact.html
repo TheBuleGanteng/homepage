@@ -1,0 +1,43 @@
+{% extends 'homepage/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Matt McDonnell: Contact</title>
+<link rel='canonical' href='https://mattmcdonnell.net/contact'/>
+<meta name='description' content='Contact page for Matthew McDonnell, CFA. Part of Matthew McDonnell, CFA homepage.'>
+
+{% endblock %}
+
+{% block main %}
+
+    <!-- section: contact form -->
+    <section class='section' id='contact_form'>
+        <div class='container-fluid text-start'>
+            <div class='row'>
+                <div class='col-sm-8 text-start'>       
+                    <h5 >Please complete the form below to contact me. I'd love to hear from you!</h5>
+                                 
+                    <div class='container_contact'>
+                        <form method='post'>
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            {% for field in form %}
+                                <div>
+                                    {{ field.label_tag }} {{ field }}
+                                    {% if field.errors %}
+                                        {% for error in field.errors %}
+                                            <div class="error">{{ error }}</div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            {% endfor %}                       
+                            <button type='submit' class='btn btn-primary'>Send</button>                
+                        </form>
+                    </div>                        
+                <!-- Closing column that holds contact form. -->
+                </div>
+            <!-- Closing container that holds contact form. -->
+            </div>
+        </div>
+    </section>
+{% endblock %}
