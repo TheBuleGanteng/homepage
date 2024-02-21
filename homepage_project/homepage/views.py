@@ -1,8 +1,13 @@
 from .forms.forms import ContactForm
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
+
+# View to that performs an HTTP request to the substack API. Used to bypass CORS issues.
+def substack_proxy(request):
+    response = requests.get('https://substackapi.com/api/feeds/?limit=3&sort=new')
+    return JsonResponse(response.json())
 
 # Create your views here.
 def index(request):
@@ -18,6 +23,7 @@ def contact(request):
         
         # Handle if method = post + form is valid
         if form.is_valid():
+            
             messages.success(request, 'Your message has been sent. Thank you!')
             return redirect('homepage:index') 
         

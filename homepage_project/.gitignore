@@ -1,2 +1,6 @@
 /gitignored
 .env
+__pycache__/
+*.pyc
+certificate.crt
+private.key

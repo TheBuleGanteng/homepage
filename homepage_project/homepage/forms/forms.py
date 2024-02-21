@@ -19,7 +19,7 @@ class ContactForm(forms.Form):
     
     phone = CharFieldRegexPhone(
         label='WhatsApp number:',
-        widget=PhoneNumberPrefixWidget(attrs={'class': 'form-control'}, initial='SG'))
+        widget=PhoneNumberPrefixWidget(attrs={'class': 'form-control'}, initial='ID'))
 
     
     body = CharFieldRegexStrict(
