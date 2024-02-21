@@ -25,7 +25,7 @@ def allowed_chars(user_input):
     print(f'running allowed_chars_validator...  passed for input: {user_input}')
 
 
-# Same as EmailField, but also:
+# EmailField plus:
 # - forces user input to lowercase
 # - trims input
 class EmailFieldLowerStripProhibitedChars(forms.EmailField):
@@ -34,3 +34,23 @@ class EmailFieldLowerStripProhibitedChars(forms.EmailField):
         user_input = user_input.lower().strip()
         allowed_chars(user_input)
         return user_input
+
+# CharField: plus
+# - trims input
+# - titlecases input
+class CharFieldTitleCaseStripProhibitedChars(forms.CharField):
+    def clean(self, user_input):
+        user_input = super().clean(user_input)  # Perform the standard cleaning and validation first
+        user_input = user_input.title().strip()
+        allowed_chars(user_input)
+        return user_input
+
+
+class CharFieldStripProhibitedCharsPhone(forms.CharField):
+    def clean(self, user_input):
+        user_input = super().clean(user_input)  # Perform the standard cleaning and validation first
+        user_input = user_input.title().strip()
+        allowed_chars(user_input)
+        return user_input
+
+
