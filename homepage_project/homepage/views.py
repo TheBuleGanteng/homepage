@@ -23,7 +23,7 @@ def contact(request):
         
         # Handle if method = post BUT form is invalid
         else:
-            messages.error(request, 'Please correct the errors below.')
+            messages.error(request, 'Please correct the errors below and try again.')
             return render(request, 
             'homepage/contact.html', 
             {'form': form})

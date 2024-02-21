@@ -2,6 +2,21 @@
 /* Custom CSS */
 
 
+
+/* CSS to target the country code on the contact page for medium screens and larger */
+@media (min-width: 768px) {
+  #id_phone_0 {
+      width: 40%; /* or any other width you prefer for larger screens */
+  }
+}
+
+/* CSS to target the country code on the contact page for large screens and larger */
+@media (min-width: 992px) {
+  #id_phone_0 {
+      width: 30%; /* or any other width you prefer for larger screens */
+  }
+}
+
 .error {
   align-content: center;
   background-color: #fff3cd;
