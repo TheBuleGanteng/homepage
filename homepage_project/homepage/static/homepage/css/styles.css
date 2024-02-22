@@ -1,7 +1,13 @@
 @charset "UTF-8";
 /* Custom CSS */
 
+#contact-link-footer {
+  color: lightgrey;
+}
 
+#contact-link-footer:hover, #contact-link-footer:focus {
+  color: whitesmoke
+}
 
 /* CSS to target the country code on the contact page for medium screens and larger */
 @media (min-width: 768px) {
@@ -6566,7 +6572,7 @@ textarea.form-control-lg {
 }
 
 .link-secondary {
-  color: #6c757d;
+  color: #6c757d; 
 }
 .link-secondary:hover, .link-secondary:focus {
   color: #565e64;

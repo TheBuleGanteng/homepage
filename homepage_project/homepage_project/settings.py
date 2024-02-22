@@ -41,9 +41,23 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 if SECRET_KEY:
     print(f'running settings.py ... SECRET KEY loaded')
 
+# References .env for debug toggle. 
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', 'False') == 'True'
+SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', 'False') == 'True'
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'False') == 'True'
+
+# CSP Setting
+CSP_DEFAULT_SRC = ('self', 'https://127.0.0.1:8000', 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com')
+CSP_SCRIPT_SRC = ('self', 'https://127.0.0.1:8000', 'https://cdn.jsdelivr.net', 'https://code.jquery.com/', 'https://www.googletagmanager.com', 'https://www.google-analytics.com', 'https://substackapi.com')
+CSP_STYLE_SRC = ('self', 'https://127.0.0.1:8000', 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com')
+CSP_IMG_SRC = ('self', "data:", 'https://127.0.0.1:8000', "https://financialmodelingprep.com/",)
+CSP_REPORT_URI = '/csp-violation-report'
+
+
 
 # Application definition
 INSTALLED_APPS = [
+    'csp',
     'homepage',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,6 +69,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'csp.middleware.CspNonceMiddleware',
+    'csp.middleware.CspHeaderMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
