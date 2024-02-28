@@ -1,0 +1,17 @@
+2024-02-27 02:26:20,282 - WARNING - Not Found: /static/homepage_app/javascript/lightDarkMode.js
+2024-02-27 02:26:20,335 - WARNING - Not Found: /static/homepage_app/assets/logo_twitter.png
+2024-02-27 02:27:11,865 - WARNING - Not Found: /static/homepage_app/css/styles.css
+2024-02-27 02:42:58,464 - WARNING - Not Found: /static/homepage_app/css/styles.css
+2024-02-27 02:42:58,467 - WARNING - Not Found: /static/homepage_app/javascript/googleAnalytics.js
+2024-02-27 02:42:58,474 - WARNING - Not Found: /static/homepage_app/assets/profile_logo.jpg
+2024-02-27 02:42:58,478 - WARNING - Not Found: /static/homepage_app/assets/logo_linkedin.png
+2024-02-27 02:42:58,570 - WARNING - Not Found: /static/homepage_app/assets/logo_github.png
+2024-02-27 02:42:58,588 - WARNING - Not Found: /static/homepage_app/css/styles.css
+2024-02-27 02:42:58,595 - WARNING - Not Found: /static/homepage_app/assets/logo_duolingo.png
+2024-02-27 02:42:58,598 - WARNING - Not Found: /static/homepage_app/assets/logo_substack.png
+2024-02-27 02:42:58,653 - WARNING - Not Found: /static/homepage_app/javascript/substackFeed.js
+2024-02-27 02:42:58,658 - WARNING - Not Found: /static/homepage_app/javascript/typewriterEffect.js
+2024-02-27 02:42:58,661 - WARNING - Not Found: /static/homepage_app/javascript/lightDarkMode.js
+2024-02-27 02:42:58,665 - WARNING - Not Found: /static/homepage_app/assets/logo_twitter.png
+2024-02-27 04:35:19,091 - INFO - Watching for file changes with StatReloader
+2024-02-28 04:07:07,389 - INFO - Watching for file changes with StatReloader

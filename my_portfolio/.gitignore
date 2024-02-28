@@ -1,6 +1,0 @@
-*gitignored/
-*-venv/
-__pycache__/
-*.pyc
-*certificate.crt
-*private.key
