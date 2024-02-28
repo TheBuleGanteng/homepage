@@ -3,4 +3,7 @@
 __pycache__/
 *.pyc
 *certificate.crt
-*certificate.key
+*private.key
+private.key
+*.env
+
