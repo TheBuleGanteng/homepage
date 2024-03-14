@@ -2477,3 +2477,156 @@ DEBUG 2024-03-14 02:36:23,324 autoreload 37567 140607739851200 File /home/thebul
 DEBUG 2024-03-14 02:36:23,324 autoreload 37567 140607739851200 File /home/thebuleganteng/homepage/homepage-venv/lib/python3.10/site-packages/django/contrib/admin/migrations/0002_logentry_remove_auto_add.py first seen with mtime 1710312933.693269
 DEBUG 2024-03-14 02:36:23,324 autoreload 37567 140607739851200 File /home/thebuleganteng/homepage/homepage-venv/lib/python3.10/site-packages/csp/migrations/__init__.py first seen with mtime 1710312935.2267165
 DEBUG 2024-03-14 02:36:23,324 autoreload 37567 140607739851200 File /home/thebuleganteng/homepage/homepage-venv/lib/python3.10/site-packages/django/contrib/auth/migrations/__init__.py first seen with mtime 1710312933.8163235
+DEBUG 2024-03-14 09:28:02,872 glogging 162569 140166827979200 Error processing SSL request.
+WARNING 2024-03-14 09:28:02,872 glogging 162569 140166827979200 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:28:02,873 glogging 162569 140166827979200 Failed to send error message.
+DEBUG 2024-03-14 09:28:02,878 glogging 162569 140166827979200 Error processing SSL request.
+WARNING 2024-03-14 09:28:02,879 glogging 162569 140166827979200 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:28:02,879 glogging 162569 140166827979200 Failed to send error message.
+DEBUG 2024-03-14 09:28:03,115 glogging 162569 140166827979200 Error processing SSL request.
+WARNING 2024-03-14 09:28:03,115 glogging 162569 140166827979200 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:28:03,115 glogging 162569 140166827979200 Failed to send error message.
+DEBUG 2024-03-14 09:28:03,201 glogging 162569 140166827979200 GET /
+ERROR 2024-03-14 09:28:03,201 exception 162569 140166827979200 Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/thebuleganteng/homepage/homepage-venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/thebuleganteng/homepage/homepage_project_settings/middleware.py", line 13, in __call__
+    full_host = request.get_host()
+  File "/home/thebuleganteng/homepage/homepage-venv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING 2024-03-14 09:28:03,223 log 162569 140166827979200 Bad Request: /
+DEBUG 2024-03-14 09:28:03,427 glogging 162569 140166827979200 GET /favicon.ico
+ERROR 2024-03-14 09:28:03,428 exception 162569 140166827979200 Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/thebuleganteng/homepage/homepage-venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/thebuleganteng/homepage/homepage_project_settings/middleware.py", line 13, in __call__
+    full_host = request.get_host()
+  File "/home/thebuleganteng/homepage/homepage-venv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING 2024-03-14 09:28:03,428 log 162569 140166827979200 Bad Request: /favicon.ico
+DEBUG 2024-03-14 09:28:03,585 glogging 162569 140166827979200 Error processing SSL request.
+WARNING 2024-03-14 09:28:03,585 glogging 162569 140166827979200 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:28:03,586 glogging 162569 140166827979200 Failed to send error message.
+INFO 2024-03-14 09:28:49,370 glogging 162569 140166827979200 Worker exiting (pid: 162569)
+DEBUG 2024-03-14 09:28:59,610 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:28:59,611 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:28:59,611 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:28:59,618 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:28:59,618 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:28:59,619 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:28:59,870 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:28:59,870 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:28:59,870 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:28:59,938 glogging 163155 140104563990976 GET /
+DEBUG 2024-03-14 09:29:00,187 glogging 163155 140104563990976 GET /static/homepage_app/css/styles.css
+DEBUG 2024-03-14 09:29:00,314 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:00,314 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:00,315 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:00,326 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:00,326 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:00,327 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:00,339 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:00,340 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:00,341 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:00,350 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:00,351 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:00,351 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:00,638 glogging 163155 140104563990976 GET /static/homepage_app/javascript/googleAnalytics.js
+DEBUG 2024-03-14 09:29:00,654 glogging 163155 140104563990976 GET /static/homepage_app/assets/profile_logo.jpg
+DEBUG 2024-03-14 09:29:00,672 glogging 163155 140104563990976 GET /static/homepage_app/assets/logo_linkedin.png
+DEBUG 2024-03-14 09:29:00,686 glogging 163155 140104563990976 GET /static/homepage_app/assets/logo_github.png
+DEBUG 2024-03-14 09:29:00,990 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:00,990 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:00,991 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:01,005 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:01,006 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:01,006 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:01,022 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:01,022 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:01,023 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:01,029 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:01,030 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:01,030 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:01,037 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:01,038 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:01,038 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:01,043 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:01,043 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:01,043 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:01,322 glogging 163155 140104563990976 GET /static/homepage_app/assets/logo_duolingo.png
+DEBUG 2024-03-14 09:29:01,337 glogging 163155 140104563990976 GET /static/homepage_app/assets/logo_substack.png
+DEBUG 2024-03-14 09:29:01,357 glogging 163155 140104563990976 GET /static/homepage_app/javascript/substackFeed.js
+DEBUG 2024-03-14 09:29:01,369 glogging 163155 140104563990976 GET /static/homepage_app/javascript/typewriterEffect.js
+DEBUG 2024-03-14 09:29:01,376 glogging 163155 140104563990976 GET /static/homepage_app/javascript/lightDarkMode.js
+DEBUG 2024-03-14 09:29:01,381 glogging 163155 140104563990976 GET /static/homepage_app/assets/logo_twitter.png
+DEBUG 2024-03-14 09:29:02,188 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:02,188 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:02,188 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:02,456 glogging 163155 140104563990976 Error processing SSL request.
+WARNING 2024-03-14 09:29:02,457 glogging 163155 140104563990976 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 09:29:02,457 glogging 163155 140104563990976 Failed to send error message.
+DEBUG 2024-03-14 09:29:02,509 glogging 163155 140104563990976 GET /static/homepage_app/assets/profile_logo.jpg
+INFO 2024-03-14 09:29:07,891 glogging 163155 140104563990976 Worker exiting (pid: 163155)
+DEBUG 2024-03-14 12:17:35,347 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:35,348 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:35,348 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:35,356 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:35,356 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:35,357 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:35,571 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:35,572 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:35,572 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:35,670 glogging 228136 139972774904256 GET /
+DEBUG 2024-03-14 12:17:35,881 glogging 228136 139972774904256 GET /static/homepage_app/css/styles.css
+DEBUG 2024-03-14 12:17:36,051 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,052 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,053 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,069 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,069 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,070 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,077 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,079 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,080 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,086 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,086 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,087 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,363 glogging 228136 139972774904256 GET /static/homepage_app/javascript/googleAnalytics.js
+DEBUG 2024-03-14 12:17:36,374 glogging 228136 139972774904256 GET /static/homepage_app/assets/profile_logo.jpg
+DEBUG 2024-03-14 12:17:36,383 glogging 228136 139972774904256 GET /static/homepage_app/assets/logo_linkedin.png
+DEBUG 2024-03-14 12:17:36,391 glogging 228136 139972774904256 GET /static/homepage_app/assets/logo_github.png
+DEBUG 2024-03-14 12:17:36,693 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,693 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,693 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,700 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,700 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,700 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,705 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,706 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,706 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,711 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,711 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,711 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,716 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,716 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,716 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:36,720 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:36,720 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:36,720 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:37,015 glogging 228136 139972774904256 GET /static/homepage_app/assets/logo_duolingo.png
+DEBUG 2024-03-14 12:17:37,031 glogging 228136 139972774904256 GET /static/homepage_app/assets/logo_substack.png
+DEBUG 2024-03-14 12:17:37,050 glogging 228136 139972774904256 GET /static/homepage_app/javascript/substackFeed.js
+DEBUG 2024-03-14 12:17:37,061 glogging 228136 139972774904256 GET /static/homepage_app/javascript/typewriterEffect.js
+DEBUG 2024-03-14 12:17:37,071 glogging 228136 139972774904256 GET /static/homepage_app/javascript/lightDarkMode.js
+DEBUG 2024-03-14 12:17:37,076 glogging 228136 139972774904256 GET /static/homepage_app/assets/logo_twitter.png
+DEBUG 2024-03-14 12:17:37,569 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:37,571 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:37,571 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:37,828 glogging 228136 139972774904256 Error processing SSL request.
+WARNING 2024-03-14 12:17:37,829 glogging 228136 139972774904256 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-14 12:17:37,829 glogging 228136 139972774904256 Failed to send error message.
+DEBUG 2024-03-14 12:17:37,876 glogging 228136 139972774904256 GET /static/homepage_app/assets/profile_logo.jpg
+INFO 2024-03-14 12:18:08,326 glogging 228136 139972774904256 Worker exiting (pid: 228136)

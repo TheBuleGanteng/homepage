@@ -29,13 +29,13 @@ loglevel = 'debug'
 
 # Path to log file
 # Make sure the 'logs' directory exists or adjust the path as necessary
-logfile = '/path/to/your/project/logs/gunicorn.log'
+logfile = 'homepage/logs/gunicorn.log'
 
 # Access log - consider enabling during debugging
-accesslog = '/path/to/your/project/logs/access.log'
+accesslog = 'homepage/logs/access.log'
 
 # Error log
-errorlog = '/path/to/your/project/logs/error.log'
+errorlog = 'homepage/logs/error.log'
 
 # Use this setting to prevent data loss on worker restart
 preload_app = False

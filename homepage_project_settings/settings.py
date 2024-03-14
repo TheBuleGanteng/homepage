@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Use .env file to set project environment, with 'dev' as the fallback
 PROJECT_ENV = os.getenv('ENVIRONMENT', 'development')
-ALLOWED_HOSTS = ['127.0.0.1', 'www.mattmcdonnell.net', 'mattmcdonnell.net', '10.148.*', 'homepage-417007.uc.r.appspot.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.mattmcdonnell.net', 'mattmcdonnell.net', '10.148.*', 'homepage-417007.uc.r.appspot.com', '172.17*']
 
 
 # Set app mode according to setting in .env above
