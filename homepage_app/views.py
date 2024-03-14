@@ -4,11 +4,14 @@ from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from .forms.forms import ContactForm
-from .helpers import datetime, dnr_email_address, domain_name, get_country_code, info_email_address, os, Path, requests, send_email
+from .helpers import configure_logging, datetime, dnr_email_address, domain_name, get_country_code, info_email_address, logging, os, Path, requests, send_email
 
+# Configures logger
+logger = logging.getLogger(__name__)
 
 # Construct the path to the .env file
 env_path = Path('.') / '.' / '.env'
+logger.debug(f'env_path is: { env_path }')
 
 
 # View that handles CSP violation reporting 
@@ -22,6 +25,7 @@ def csp_violation_report(request):
 # View to that performs an HTTP request to the substack API. Used to bypass CORS issues.
 def substack_proxy(request):
     print(f'running substack_proxy() ... function started')
+    logger.debug(f'running substack_proxy() ... function started')
     
     # Target URL to fetch from Substack API
     target_url = 'https://substackapi.com/api/feeds/?limit=3&sort=new'
@@ -29,27 +33,44 @@ def substack_proxy(request):
     # Forward the request to the Substack API
     response = requests.get(target_url)
     print(f'running substack_proxy() ... JsonResponse(response.json(), safe=False) is { JsonResponse(response.json(), safe=False) } ')
+    logger.debug(f'running substack_proxy() ... JsonResponse(response.json(), safe=False) is { JsonResponse(response.json(), safe=False) } ')
     
     # Return the Substack API response as a JSON response
+    logger.debug(f'running substack_proxy() ... function ended')
     return JsonResponse(response.json(), safe=False)
 
 
-# Readiness check (needed for serving via GCP)
-def readiness_check():
-# Perform any necessary checks here, such as database connectivity, 
-# availability of external services, etc.
-# For simplicity, this example assumes the app is always ready.
 
-    return 'Ready', 200  # Returns a 200 OK response with text "Ready"
+# Readiness check (needed for serving via GCP)
+def readiness_check(request):
+    
+    logger.debug(f'starting readiness_check() ... ')
+
+    # Perform any necessary checks here, such as database connectivity,
+    # availability of external services, etc.
+    # For simplicity, this example assumes the app is always ready.
+
+    #try:
+        # Your check logic here
+        # For example: check_database_connection()
+        #logger.info("Readiness check passed")
+    #except Exception as e:
+        #logger.error(f"Readiness check failed: {e}")
+        #return HttpResponse('Service Unavailable', status=503)
+
+    logger.debug(f'ended readiness_check() ... ')
+    return HttpResponse('Ready', status=200)
 
 
 
 # Create your views here.
 def index(request):
+    logger.debug(f'starting index() ... ')
+    logger.debug(f'ending index() ... ')
     return render(request, 'homepage_app/index.html')
 
 def contact(request):
-
+    logger.debug(f'starting contact() ... ')
 
     # Handle if method = post
     if request.method == 'POST':

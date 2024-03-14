@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from dotenv import load_dotenv
-from homepage_app.helpers.logging import setup_logging
+from homepage_app.helpers.logging import configure_logging
 import importlib.util
 import os
 from pathlib import Path
@@ -30,7 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Use .env file to set project environment, with 'dev' as the fallback
 PROJECT_ENV = os.getenv('ENVIRONMENT', 'development')
-print(f'starting project... PROJECT_ENV is: { PROJECT_ENV}')
+ALLOWED_HOSTS = ['127.0.0.1', 'www.mattmcdonnell.net', 'mattmcdonnell.net', '10.148.*', 'homepage-417007.uc.r.appspot.com']
+
 
 # Set app mode according to setting in .env above
 if PROJECT_ENV == 'testing':
@@ -39,6 +40,15 @@ elif PROJECT_ENV == 'production':
     from .configs_project.config_prod import *
 else:
     from .configs_project.config_dev import *
+
+
+
+print(f'running settings.py .... PROJECT_ENV is { PROJECT_ENV }')
+print(f'running settings.py .... ALLOWED_HOSTS is { ALLOWED_HOSTS }')
+print(f'running settings.py .... LOG_TO_CONSOLE is { LOG_TO_CONSOLE }')
+print(f'running settings.py .... LOG_TO_FILE is { LOG_TO_FILE }')
+print(f'running settings.py .... USE_GOOGLE_CLOUD_LOGGING is { USE_GOOGLE_CLOUD_LOGGING }')
+
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -59,7 +69,7 @@ CSP_REPORT_URI = '/csp-violation-report'
 
 # Logging file path
 LOG_FILE_PATH = os.getenv('LOG_FILE_PATH')
-setup_logging()
+configure_logging()
 
 # Application definition
 INSTALLED_APPS = [
@@ -72,12 +82,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'sslserver',
 ]
 
 
 
 MIDDLEWARE = [
+    'homepage_project_settings.middleware.ValidateHostMiddleware',
     'csp.middleware.CspNonceMiddleware',
     'csp.middleware.CspHeaderMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -87,6 +97,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'homepage_project_settings.urls'
@@ -151,11 +162,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     
 ]
+
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 
@@ -163,3 +177,49 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Enhanced logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'django_debug.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'gunicorn.error': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file'],
+            'propagate': True,
+        },
+        'gunicorn.access': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file'],
+            'propagate': False,
+        },
+    },
+}

@@ -1,0 +1,352 @@
+[2024-03-13 15:18:48 +0700] [160235] [DEBUG] Current configuration:
+  config: homepage_project_settings/gunicorn_config.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 17
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 1000
+  max_requests_jitter: 0
+  timeout: 60
+  graceful_timeout: 30
+  keepalive: 5
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: True
+  sendfile: None
+  reuse_port: False
+  chdir: /home/thebuleganteng/homepage
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/thebuleganteng/homepage/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/thebuleganteng/homepage/logs/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: homepage_project_settings.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f6647d13c70>
+  on_reload: <function OnReload.on_reload at 0x7f6647d13d90>
+  when_ready: <function WhenReady.when_ready at 0x7f6647d13eb0>
+  pre_fork: <function Prefork.pre_fork at 0x7f6647d34040>
+  post_fork: <function Postfork.post_fork at 0x7f6647d34160>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f6647d34280>
+  worker_int: <function WorkerInt.worker_int at 0x7f6647d343a0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f6647d344c0>
+  pre_exec: <function PreExec.pre_exec at 0x7f6647d345e0>
+  pre_request: <function PreRequest.pre_request at 0x7f6647d34700>
+  post_request: <function PostRequest.post_request at 0x7f6647d34790>
+  child_exit: <function ChildExit.child_exit at 0x7f6647d348b0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f6647d349d0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f6647d34af0>
+  on_exit: <function OnExit.on_exit at 0x7f6647d34c10>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f6647d34d30>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2024-03-13 15:23:21 +0700] [162846] [DEBUG] Current configuration:
+  config: homepage_project_settings/gunicorn_config.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 2
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 1000
+  max_requests_jitter: 0
+  timeout: 60
+  graceful_timeout: 30
+  keepalive: 5
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: True
+  sendfile: None
+  reuse_port: False
+  chdir: /home/thebuleganteng/homepage
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/thebuleganteng/homepage/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/thebuleganteng/homepage/logs/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: homepage_project_settings.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f705a14fc70>
+  on_reload: <function OnReload.on_reload at 0x7f705a14fd90>
+  when_ready: <function WhenReady.when_ready at 0x7f705a14feb0>
+  pre_fork: <function Prefork.pre_fork at 0x7f705a170040>
+  post_fork: <function Postfork.post_fork at 0x7f705a170160>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f705a170280>
+  worker_int: <function WorkerInt.worker_int at 0x7f705a1703a0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f705a1704c0>
+  pre_exec: <function PreExec.pre_exec at 0x7f705a1705e0>
+  pre_request: <function PreRequest.pre_request at 0x7f705a170700>
+  post_request: <function PostRequest.post_request at 0x7f705a170790>
+  child_exit: <function ChildExit.child_exit at 0x7f705a1708b0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f705a1709d0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f705a170af0>
+  on_exit: <function OnExit.on_exit at 0x7f705a170c10>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f705a170d30>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2024-03-13 15:30:24 +0700] [166091] [DEBUG] Current configuration:
+  config: homepage_project_settings/gunicorn_config.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 2
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 1000
+  max_requests_jitter: 0
+  timeout: 60
+  graceful_timeout: 30
+  keepalive: 5
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: True
+  sendfile: None
+  reuse_port: False
+  chdir: /home/thebuleganteng/homepage
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/thebuleganteng/homepage/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/thebuleganteng/homepage/logs/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: homepage_project_settings.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f2549003c70>
+  on_reload: <function OnReload.on_reload at 0x7f2549003d90>
+  when_ready: <function WhenReady.when_ready at 0x7f2549003eb0>
+  pre_fork: <function Prefork.pre_fork at 0x7f2549024040>
+  post_fork: <function Postfork.post_fork at 0x7f2549024160>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f2549024280>
+  worker_int: <function WorkerInt.worker_int at 0x7f25490243a0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f25490244c0>
+  pre_exec: <function PreExec.pre_exec at 0x7f25490245e0>
+  pre_request: <function PreRequest.pre_request at 0x7f2549024700>
+  post_request: <function PostRequest.post_request at 0x7f2549024790>
+  child_exit: <function ChildExit.child_exit at 0x7f25490248b0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f25490249d0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f2549024af0>
+  on_exit: <function OnExit.on_exit at 0x7f2549024c10>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f2549024d30>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2024-03-13 15:34:12 +0700] [167834] [DEBUG] Current configuration:
+  config: homepage_project_settings/gunicorn_config.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 2
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 1000
+  max_requests_jitter: 0
+  timeout: 60
+  graceful_timeout: 30
+  keepalive: 5
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: True
+  sendfile: None
+  reuse_port: False
+  chdir: /home/thebuleganteng/homepage
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/thebuleganteng/homepage/logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/thebuleganteng/homepage/logs/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: homepage_project_settings.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f254ad87c70>
+  on_reload: <function OnReload.on_reload at 0x7f254ad87d90>
+  when_ready: <function WhenReady.when_ready at 0x7f254ad87eb0>
+  pre_fork: <function Prefork.pre_fork at 0x7f254ada8040>
+  post_fork: <function Postfork.post_fork at 0x7f254ada8160>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f254ada8280>
+  worker_int: <function WorkerInt.worker_int at 0x7f254ada83a0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f254ada84c0>
+  pre_exec: <function PreExec.pre_exec at 0x7f254ada85e0>
+  pre_request: <function PreRequest.pre_request at 0x7f254ada8700>
+  post_request: <function PostRequest.post_request at 0x7f254ada8790>
+  child_exit: <function ChildExit.child_exit at 0x7f254ada88b0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f254ada89d0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f254ada8af0>
+  on_exit: <function OnExit.on_exit at 0x7f254ada8c10>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f254ada8d30>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
