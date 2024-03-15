@@ -20,6 +20,8 @@ from homepage_app.views import readiness_check
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('csp/', include('csp.urls', namespace='csp')),
     path('', include(('homepage_app.urls', 'homepage_app'), namespace='homepage_app')),
     path('readiness_check/', readiness_check, name='readiness_check'),
+    
 ]

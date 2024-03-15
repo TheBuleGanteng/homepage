@@ -14,7 +14,7 @@
 
 runtime: custom
 env: flex
-entrypoint: gunicorn -b :$PORT homepage_project_settings.wsgi:application
+
 
 env_variables:
   DJANGO_SETTINGS_MODULE: "homepage_project_settings.settings"

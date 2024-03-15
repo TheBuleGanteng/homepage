@@ -19,14 +19,6 @@ class ValidateHostMiddleware:
         # Log the processed host value
         logger.info(f'Processed host value: {host}')
 
-        # Dynamically allow the host if it matches your criteria
-        if host.startswith("10.148.") or host in ['www.mattmcdonnell.net', 'mattmcdonnell.net', '127.0.0.1', 'localhost']:
-            if host not in settings.ALLOWED_HOSTS:
-                logger.info(f'Adding {host} to ALLOWED_HOSTS')
-                settings.ALLOWED_HOSTS.append(host)
-        else:
-            logger.warning(f'Invalid Host header: {host}')
-            return HttpResponseBadRequest("Invalid Host header")
-
+        # Proceed with the request processing without modifying ALLOWED_HOSTS
         response = self.get_response(request)
         return response

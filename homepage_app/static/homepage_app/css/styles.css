@@ -6225,7 +6225,18 @@ textarea.form-control-lg {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
+  height: 200px; /* CUSTOMIZATION : ADDED */
 }
+
+.carousel-item img {
+  height: 100%; /* Ensure images cover the full height */
+  object-fit: cover; /* This makes the image cover the area without losing its aspect ratio */
+}
+
+.carousel-item iframe {
+  height: 100%; /* Ensure the iframe takes the full height of its parent */
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carousel-item {
     transition: none;
@@ -6323,6 +6334,10 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: 100% 100%;
+  background-color: rgba(100, 100, 100, 0.8); /* CUSTOMIZATION : ADDED */
+
+
+
 }
 
 /* rtl:options: {
@@ -6385,12 +6400,14 @@ textarea.form-control-lg {
 .carousel-caption {
   position: absolute;
   right: 15%;
-  bottom: 1.25rem;
+  bottom: 0.5rem; /* CUSTOMIZATION : WAS 1.25rem */
   left: 15%;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+  padding-top: 0.5rem; /* CUSTOMIZATION : WAS 1.25rem */
+  padding-bottom: 0.5rem; /* CUSTOMIZATION : WAS 1.25rem */
   color: #fff;
   text-align: center;
+  background-color: rgba(100, 100, 100, 0.8); /* CUSTOMIZATION : ADDED */
+  border-radius: 10px; /* CUSTOMIZATION : ADDED */
 }
 
 .carousel-dark .carousel-control-prev-icon,
