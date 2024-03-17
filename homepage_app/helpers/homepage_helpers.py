@@ -37,17 +37,23 @@ def send_email(body, recipient, sender, subject):
     
     # Load service account credentials
     SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(__file__), '..', 'gitignored', 'gmail_access_credentials.json')
+    print(f'running send_email ... SERVICE_ACCOUNT_FILE is: { SERVICE_ACCOUNT_FILE }')
+
     SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+    print(f'running send_email ... SCOPES is: { SCOPES }')
 
     # Now use the source credentials to acquire credentials to impersonate another service account
     credentials = service_account.Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+    print(f'running send_email ... credentials is: { credentials }')
 
     # If you're using domain-wide delegation, specify the user to impersonate
     credentials = credentials.with_subject(dnr_email_address)
+    print(f'running send_email ... credentials is: { credentials }')
 
     # Build the Gmail service
     service = build('gmail', 'v1', credentials=credentials)
+    print(f'running send_email ... service is: { service }')
 
     # Create and send email
     email_msg = body

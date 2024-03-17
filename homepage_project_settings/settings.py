@@ -73,10 +73,12 @@ CSP_REPORT_URI = '/csp-violation-report'
 
 
 CSP_DEFAULTS = {
-    "default-src": ["'self'", "https://127.0.0.1:8000", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://www.googletagmanager.com", "https://www.google-analytics.com"],
+"default-src": ["'self'", "https://127.0.0.1:8000", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://www.googletagmanager.com", "https://www.google-analytics.com"],
     "script-src": ["'self'", "https://127.0.0.1:8000", "https://cdn.jsdelivr.net", "https://code.jquery.com/", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://substackapi.com", "{nonce}"],
     "style-src": ["'self'", "https://127.0.0.1:8000", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "'unsafe-inline'"],
-    "img-src": ["'self'", "data:", "https://127.0.0.1:8000", "https://financialmodelingprep.com/"],
+    "img-src": ["'self'", "data:", "https://127.0.0.1:8000", "https://financialmodelingprep.com/", "https://images.unsplash.com", "https://substackcdn.com"],
+    "frame-src": ["'self'", "https://www.youtube.com"],
+    "connect-src": ["'self'", "https://substackapi.com", "https://www.google-analytics.com"],
     # Add more directives as needed
 }
 

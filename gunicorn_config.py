@@ -30,13 +30,21 @@ loglevel = 'debug'
 
 # Path to log file
 # Make sure the 'logs' directory exists or adjust the path as necessary
-logfile = 'homepage/logs/gunicorn.log'
+logfile = 'logs/gunicorn.log'
 
 # Access log - consider enabling during debugging
-accesslog = 'homepage/logs/access.log'
+accesslog = 'logs/access.log'
 
 # Error log
-errorlog = 'homepage/logs/error.log'
+errorlog = 'logs/error.log'
 
 # Use this setting to prevent data loss on worker restart
 preload_app = False
+
+# Specify self-signed keys, so they are not needed in the command line when
+# starting gunicorn via 'gunicorn --config gunicorn_config.py homepage_project_settings.wsgi:application --bind 0.0.0.0:8000'
+certfile = 'certificate.crt'
+keyfile = 'certificate.key'
+
+
+print(f"Environment Variables: {os.environ}")
