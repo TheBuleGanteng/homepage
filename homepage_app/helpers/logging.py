@@ -34,8 +34,8 @@ def configure_logging():
     if getattr(settings, 'USE_GOOGLE_CLOUD_LOGGING', False):
         client = google.cloud.logging.Client()
         handler = CloudLoggingHandler(client)
+        handler.setLevel(logging.NOTSET)  # Set the logging level for the handler
         logging.getLogger('').addHandler(handler)
-        logging.getLogger('').setLevel(logging.NOTSET)
 
     # Set the overall logging level
     logging.getLogger('').setLevel(logging.DEBUG)
