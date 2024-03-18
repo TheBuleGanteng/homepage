@@ -12,5 +12,4 @@ urlpatterns = [
     path('returnkey', views.returnkey, name='returnkey'),
     path('api/substack-proxy/', substack_proxy, name='substack_proxy'),
     path('tokobox', views.tokobox, name='tokobox'),
-    path('send-test-email/', views.send_test_email, name='send_test_email'),
 ]
