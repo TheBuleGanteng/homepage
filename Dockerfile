@@ -24,6 +24,6 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Use gunicorn to run the application with SSL certificates (production version is listed at top, dev version is below)
-CMD gunicorn -c gunicorn_config.py --timeout 120 --log-level debug --access-logfile - --error-logfile - homepage_project_settings.wsgi:application
+CMD gunicorn -b 0.0.0.0:$PORT homepage_project_settings.wsgi:application
 
 #CMD gunicorn -b 0.0.0.0:8000 --certfile=certificate.crt --keyfile=certificate.key --timeout 120 --log-level debug --access-logfile - --error-logfile - homepage_project_settings.wsgi:application

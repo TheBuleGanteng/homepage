@@ -3476,3 +3476,233 @@
 [2024-03-18 21:09:32 +0700] [961614] [INFO] Using worker: sync
 [2024-03-18 21:09:32 +0700] [961615] [INFO] Booting worker with pid: 961615
 [2024-03-18 21:09:32 +0700] [961614] [DEBUG] 1 workers
+[2024-03-18 21:12:22 +0700] [961614] [INFO] Handling signal: int
+[2024-03-18 21:12:22 +0700] [961614] [INFO] Shutting down: Master
+[2024-03-18 22:19:39 +0700] [980036] [DEBUG] Current configuration:
+  config: gunicorn_config.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 17
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 1000
+  max_requests_jitter: 0
+  timeout: 60
+  graceful_timeout: 30
+  keepalive: 5
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/thebuleganteng/homepage
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: logs/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: homepage_project_settings.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7febe029bc70>
+  on_reload: <function OnReload.on_reload at 0x7febe029bd90>
+  when_ready: <function WhenReady.when_ready at 0x7febe029beb0>
+  pre_fork: <function Prefork.pre_fork at 0x7febe02b8040>
+  post_fork: <function Postfork.post_fork at 0x7febe02b8160>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7febe02b8280>
+  worker_int: <function WorkerInt.worker_int at 0x7febe02b83a0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7febe02b84c0>
+  pre_exec: <function PreExec.pre_exec at 0x7febe02b85e0>
+  pre_request: <function PreRequest.pre_request at 0x7febe02b8700>
+  post_request: <function PostRequest.post_request at 0x7febe02b8790>
+  child_exit: <function ChildExit.child_exit at 0x7febe02b88b0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7febe02b89d0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7febe02b8af0>
+  on_exit: <function OnExit.on_exit at 0x7febe02b8c10>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7febe02b8d30>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: certificate.key
+  certfile: certificate.crt
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2024-03-18 22:19:39 +0700] [980036] [INFO] Starting gunicorn 21.2.0
+[2024-03-18 22:19:39 +0700] [980036] [DEBUG] Arbiter booted
+[2024-03-18 22:19:39 +0700] [980036] [INFO] Listening at: https://0.0.0.0:8000 (980036)
+[2024-03-18 22:19:39 +0700] [980036] [INFO] Using worker: sync
+[2024-03-18 22:19:39 +0700] [980040] [INFO] Booting worker with pid: 980040
+[2024-03-18 22:19:39 +0700] [980044] [INFO] Booting worker with pid: 980044
+[2024-03-18 22:19:39 +0700] [980045] [INFO] Booting worker with pid: 980045
+[2024-03-18 22:19:39 +0700] [980046] [INFO] Booting worker with pid: 980046
+[2024-03-18 22:19:39 +0700] [980047] [INFO] Booting worker with pid: 980047
+[2024-03-18 22:19:39 +0700] [980048] [INFO] Booting worker with pid: 980048
+[2024-03-18 22:19:39 +0700] [980049] [INFO] Booting worker with pid: 980049
+[2024-03-18 22:19:39 +0700] [980050] [INFO] Booting worker with pid: 980050
+[2024-03-18 22:19:39 +0700] [980051] [INFO] Booting worker with pid: 980051
+[2024-03-18 22:19:39 +0700] [980052] [INFO] Booting worker with pid: 980052
+[2024-03-18 22:19:39 +0700] [980053] [INFO] Booting worker with pid: 980053
+[2024-03-18 22:19:39 +0700] [980054] [INFO] Booting worker with pid: 980054
+[2024-03-18 22:19:39 +0700] [980055] [INFO] Booting worker with pid: 980055
+[2024-03-18 22:19:39 +0700] [980056] [INFO] Booting worker with pid: 980056
+[2024-03-18 22:19:40 +0700] [980057] [INFO] Booting worker with pid: 980057
+[2024-03-18 22:19:40 +0700] [980058] [INFO] Booting worker with pid: 980058
+[2024-03-18 22:19:40 +0700] [980059] [INFO] Booting worker with pid: 980059
+[2024-03-18 22:19:40 +0700] [980036] [DEBUG] 17 workers
+[2024-03-18 22:20:50 +0700] [980036] [CRITICAL] WORKER TIMEOUT (pid:980045)
+[2024-03-18 22:20:51 +0700] [980036] [ERROR] Worker (pid:980045) exited with code 1
+[2024-03-18 22:20:51 +0700] [980036] [ERROR] Worker (pid:980045) exited with code 1.
+[2024-03-18 22:20:51 +0700] [980602] [INFO] Booting worker with pid: 980602
+[2024-03-18 22:30:15 +0700] [980036] [INFO] Handling signal: int
+[2024-03-18 22:30:15 +0700] [980036] [INFO] Shutting down: Master
+[2024-03-18 22:30:17 +0700] [982673] [DEBUG] Current configuration:
+  config: gunicorn_config.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 17
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 1000
+  max_requests_jitter: 0
+  timeout: 60
+  graceful_timeout: 30
+  keepalive: 5
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/thebuleganteng/homepage
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: logs/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: homepage_project_settings.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f548be8bc70>
+  on_reload: <function OnReload.on_reload at 0x7f548be8bd90>
+  when_ready: <function WhenReady.when_ready at 0x7f548be8beb0>
+  pre_fork: <function Prefork.pre_fork at 0x7f548bea8040>
+  post_fork: <function Postfork.post_fork at 0x7f548bea8160>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f548bea8280>
+  worker_int: <function WorkerInt.worker_int at 0x7f548bea83a0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f548bea84c0>
+  pre_exec: <function PreExec.pre_exec at 0x7f548bea85e0>
+  pre_request: <function PreRequest.pre_request at 0x7f548bea8700>
+  post_request: <function PostRequest.post_request at 0x7f548bea8790>
+  child_exit: <function ChildExit.child_exit at 0x7f548bea88b0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f548bea89d0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f548bea8af0>
+  on_exit: <function OnExit.on_exit at 0x7f548bea8c10>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f548bea8d30>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: certificate.key
+  certfile: certificate.crt
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2024-03-18 22:30:17 +0700] [982673] [INFO] Starting gunicorn 21.2.0
+[2024-03-18 22:30:17 +0700] [982673] [DEBUG] Arbiter booted
+[2024-03-18 22:30:17 +0700] [982673] [INFO] Listening at: https://0.0.0.0:8000 (982673)
+[2024-03-18 22:30:17 +0700] [982673] [INFO] Using worker: sync
+[2024-03-18 22:30:17 +0700] [982674] [INFO] Booting worker with pid: 982674
+[2024-03-18 22:30:17 +0700] [982675] [INFO] Booting worker with pid: 982675
+[2024-03-18 22:30:17 +0700] [982676] [INFO] Booting worker with pid: 982676
+[2024-03-18 22:30:17 +0700] [982677] [INFO] Booting worker with pid: 982677
+[2024-03-18 22:30:17 +0700] [982678] [INFO] Booting worker with pid: 982678
+[2024-03-18 22:30:17 +0700] [982679] [INFO] Booting worker with pid: 982679
+[2024-03-18 22:30:17 +0700] [982680] [INFO] Booting worker with pid: 982680
+[2024-03-18 22:30:17 +0700] [982681] [INFO] Booting worker with pid: 982681
+[2024-03-18 22:30:17 +0700] [982682] [INFO] Booting worker with pid: 982682
+[2024-03-18 22:30:17 +0700] [982683] [INFO] Booting worker with pid: 982683
+[2024-03-18 22:30:17 +0700] [982684] [INFO] Booting worker with pid: 982684
+[2024-03-18 22:30:17 +0700] [982685] [INFO] Booting worker with pid: 982685
+[2024-03-18 22:30:18 +0700] [982686] [INFO] Booting worker with pid: 982686
+[2024-03-18 22:30:18 +0700] [982687] [INFO] Booting worker with pid: 982687
+[2024-03-18 22:30:18 +0700] [982688] [INFO] Booting worker with pid: 982688
+[2024-03-18 22:30:18 +0700] [982690] [INFO] Booting worker with pid: 982690
+[2024-03-18 22:30:18 +0700] [982692] [INFO] Booting worker with pid: 982692
+[2024-03-18 22:30:18 +0700] [982673] [DEBUG] 17 workers
+[2024-03-18 22:30:20 +0700] [982673] [INFO] Handling signal: int
+[2024-03-18 22:30:21 +0700] [982673] [INFO] Shutting down: Master

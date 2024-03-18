@@ -15,7 +15,6 @@
 runtime: custom
 env: flex
 
-
 env_variables:
   DJANGO_SETTINGS_MODULE: "homepage_project_settings.settings"
 

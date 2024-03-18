@@ -22824,3 +22824,122 @@ INFO 2024-03-18 14:09:54,312 glogging 961615 140201017196992 127.0.0.1 - - [18/M
 DEBUG 2024-03-18 14:09:54,378 glogging 961615 140201017196992 Error processing SSL request.
 WARNING 2024-03-18 14:09:54,378 glogging 961615 140201017196992 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
 DEBUG 2024-03-18 14:09:54,378 glogging 961615 140201017196992 Failed to send error message.
+INFO 2024-03-18 14:12:22,469 glogging 961615 140201017196992 Worker exiting (pid: 961615)
+DEBUG 2024-03-18 15:19:47,264 glogging 980055 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:47,265 glogging 980055 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:47,265 glogging 980055 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:47,507 glogging 980054 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:47,507 glogging 980054 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:47,507 glogging 980054 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:47,587 glogging 980055 140651062895040 GET /
+INFO 2024-03-18 15:19:47,636 glogging 980055 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:47 +0000] "GET / HTTP/1.1" 200 22626 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:47,821 glogging 980055 140651062895040 GET /static/homepage_app/css/styles.css
+INFO 2024-03-18 15:19:47,822 glogging 980055 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:47 +0000] "GET /static/homepage_app/css/styles.css HTTP/1.1" 200 27486 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:47,995 glogging 980046 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:47,995 glogging 980046 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:47,995 glogging 980046 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,003 glogging 980055 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:48,003 glogging 980055 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:48,004 glogging 980055 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,014 glogging 980053 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:48,014 glogging 980053 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:48,015 glogging 980053 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,020 glogging 980052 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:48,020 glogging 980052 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:48,020 glogging 980052 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,310 glogging 980049 140651062895040 GET /static/homepage_app/javascript/googleAnalytics.js
+INFO 2024-03-18 15:19:48,313 glogging 980049 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/javascript/googleAnalytics.js HTTP/1.1" 200 247 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:48,321 glogging 980047 140651062895040 GET /static/homepage_app/assets/profile_logo.jpg
+INFO 2024-03-18 15:19:48,327 glogging 980047 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/assets/profile_logo.jpg HTTP/1.1" 200 47409 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:48,330 glogging 980055 140651062895040 GET /static/homepage_app/assets/logo_linkedin.png
+INFO 2024-03-18 15:19:48,332 glogging 980055 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/assets/logo_linkedin.png HTTP/1.1" 200 2595 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:48,343 glogging 980057 140651062895040 GET /static/homepage_app/assets/logo_github.png
+INFO 2024-03-18 15:19:48,349 glogging 980057 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/assets/logo_github.png HTTP/1.1" 200 7010 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:48,640 glogging 980055 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:48,640 glogging 980055 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:48,640 glogging 980055 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,644 glogging 980046 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:48,645 glogging 980046 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:48,645 glogging 980046 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,663 glogging 980047 140651062895040 Error processing SSL request.
+DEBUG 2024-03-18 15:19:48,663 glogging 980055 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:48,663 glogging 980055 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+WARNING 2024-03-18 15:19:48,663 glogging 980047 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:48,664 glogging 980055 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,664 glogging 980047 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,665 glogging 980046 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:48,666 glogging 980046 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:48,666 glogging 980046 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,670 glogging 980046 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:48,670 glogging 980046 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:48,671 glogging 980046 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:48,956 glogging 980050 140651062895040 GET /static/homepage_app/assets/logo_duolingo.png
+INFO 2024-03-18 15:19:48,960 glogging 980050 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/assets/logo_duolingo.png HTTP/1.1" 200 21899 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:48,967 glogging 980058 140651062895040 GET /static/homepage_app/assets/logo_substack.png
+INFO 2024-03-18 15:19:48,970 glogging 980058 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/assets/logo_substack.png HTTP/1.1" 200 966 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:48,978 glogging 980050 140651062895040 GET /static/homepage_app/assets/logo_twitter.png
+INFO 2024-03-18 15:19:48,980 glogging 980050 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/assets/logo_twitter.png HTTP/1.1" 200 40187 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:48,982 glogging 980055 140651062895040 GET /static/homepage_app/javascript/typewriterEffect.js
+DEBUG 2024-03-18 15:19:48,982 glogging 980054 140651062895040 GET /static/homepage_app/javascript/substackFeed.js
+INFO 2024-03-18 15:19:48,984 glogging 980055 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/javascript/typewriterEffect.js HTTP/1.1" 200 645 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+INFO 2024-03-18 15:19:48,988 glogging 980054 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/javascript/substackFeed.js HTTP/1.1" 200 194 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:48,991 glogging 980051 140651062895040 GET /static/homepage_app/javascript/lightDarkMode.js
+INFO 2024-03-18 15:19:48,994 glogging 980051 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:48 +0000] "GET /static/homepage_app/javascript/lightDarkMode.js HTTP/1.1" 200 653 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:49,283 glogging 980055 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:49,283 glogging 980055 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:49,283 glogging 980055 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:49,287 glogging 980057 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:49,287 glogging 980057 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:49,287 glogging 980057 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:49,290 glogging 980055 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:49,290 glogging 980055 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:49,291 glogging 980055 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:49,577 glogging 980059 140651062895040 GET /static/homepage_app/assets/AppScreenshot_MyFinance50_1.png
+INFO 2024-03-18 15:19:49,580 glogging 980059 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:49 +0000] "GET /static/homepage_app/assets/AppScreenshot_MyFinance50_1.png HTTP/1.1" 200 57619 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:49,582 glogging 980053 140651062895040 GET /static/homepage_app/assets/AppScreenshot_MyFinance50_2.png
+DEBUG 2024-03-18 15:19:49,582 glogging 980044 140651062895040 GET /static/homepage_app/assets/AppScreenshot_MyFinance50_3.png
+INFO 2024-03-18 15:19:49,584 glogging 980053 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:49 +0000] "GET /static/homepage_app/assets/AppScreenshot_MyFinance50_2.png HTTP/1.1" 200 63753 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+INFO 2024-03-18 15:19:49,585 glogging 980044 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:49 +0000] "GET /static/homepage_app/assets/AppScreenshot_MyFinance50_3.png HTTP/1.1" 200 57601 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+DEBUG 2024-03-18 15:19:50,049 glogging 980057 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:50,049 glogging 980057 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:50,049 glogging 980057 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:50,289 glogging 980055 140651062895040 Error processing SSL request.
+WARNING 2024-03-18 15:19:50,289 glogging 980055 140651062895040 Invalid request from ip=127.0.0.1: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:2578)
+DEBUG 2024-03-18 15:19:50,290 glogging 980055 140651062895040 Failed to send error message.
+DEBUG 2024-03-18 15:19:50,339 glogging 980059 140651062895040 GET /static/homepage_app/assets/profile_logo.jpg
+INFO 2024-03-18 15:19:50,340 glogging 980059 140651062895040 127.0.0.1 - - [18/Mar/2024:15:19:50 +0000] "GET /static/homepage_app/assets/profile_logo.jpg HTTP/1.1" 200 47409 "https://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+INFO 2024-03-18 15:20:50,894 glogging 980045 140651062895040 Worker exiting (pid: 980045)
+INFO 2024-03-18 15:30:15,136 glogging 980051 140651062895040 Worker exiting (pid: 980051)
+INFO 2024-03-18 15:30:15,136 glogging 980057 140651062895040 Worker exiting (pid: 980057)
+INFO 2024-03-18 15:30:15,142 glogging 980050 140651062895040 Worker exiting (pid: 980050)
+INFO 2024-03-18 15:30:15,142 glogging 980053 140651062895040 Worker exiting (pid: 980053)
+INFO 2024-03-18 15:30:15,142 glogging 980040 140651062895040 Worker exiting (pid: 980040)
+INFO 2024-03-18 15:30:15,142 glogging 980054 140651062895040 Worker exiting (pid: 980054)
+INFO 2024-03-18 15:30:15,142 glogging 980602 140651062895040 Worker exiting (pid: 980602)
+INFO 2024-03-18 15:30:15,147 glogging 980058 140651062895040 Worker exiting (pid: 980058)
+INFO 2024-03-18 15:30:15,151 glogging 980055 140651062895040 Worker exiting (pid: 980055)
+INFO 2024-03-18 15:30:15,150 glogging 980049 140651062895040 Worker exiting (pid: 980049)
+INFO 2024-03-18 15:30:15,151 glogging 980044 140651062895040 Worker exiting (pid: 980044)
+INFO 2024-03-18 15:30:15,151 glogging 980056 140651062895040 Worker exiting (pid: 980056)
+INFO 2024-03-18 15:30:15,151 glogging 980046 140651062895040 Worker exiting (pid: 980046)
+INFO 2024-03-18 15:30:15,154 glogging 980047 140651062895040 Worker exiting (pid: 980047)
+INFO 2024-03-18 15:30:15,161 glogging 980048 140651062895040 Worker exiting (pid: 980048)
+INFO 2024-03-18 15:30:15,161 glogging 980052 140651062895040 Worker exiting (pid: 980052)
+INFO 2024-03-18 15:30:15,161 glogging 980059 140651062895040 Worker exiting (pid: 980059)
+INFO 2024-03-18 15:30:20,505 glogging 982685 140001109287360 Worker exiting (pid: 982685)
+INFO 2024-03-18 15:30:20,505 glogging 982682 140001109287360 Worker exiting (pid: 982682)
+INFO 2024-03-18 15:30:20,505 glogging 982679 140001109287360 Worker exiting (pid: 982679)
+INFO 2024-03-18 15:30:20,506 glogging 982676 140001109287360 Worker exiting (pid: 982676)
+INFO 2024-03-18 15:30:20,507 glogging 982678 140001109287360 Worker exiting (pid: 982678)
+INFO 2024-03-18 15:30:20,506 glogging 982677 140001109287360 Worker exiting (pid: 982677)
+INFO 2024-03-18 15:30:20,506 glogging 982675 140001109287360 Worker exiting (pid: 982675)
+INFO 2024-03-18 15:30:20,505 glogging 982680 140001109287360 Worker exiting (pid: 982680)
+INFO 2024-03-18 15:30:20,520 glogging 982683 140001109287360 Worker exiting (pid: 982683)
+INFO 2024-03-18 15:30:20,520 glogging 982681 140001109287360 Worker exiting (pid: 982681)
+INFO 2024-03-18 15:30:20,520 glogging 982688 140001109287360 Worker exiting (pid: 982688)
+INFO 2024-03-18 15:30:20,520 glogging 982684 140001109287360 Worker exiting (pid: 982684)
+INFO 2024-03-18 15:30:20,520 glogging 982687 140001109287360 Worker exiting (pid: 982687)
+INFO 2024-03-18 15:30:20,522 glogging 982674 140001109287360 Worker exiting (pid: 982674)
+INFO 2024-03-18 15:30:20,530 glogging 982690 140001109287360 Worker exiting (pid: 982690)
+INFO 2024-03-18 15:30:20,532 glogging 982692 140001109287360 Worker exiting (pid: 982692)
+INFO 2024-03-18 15:30:20,550 glogging 982686 140001109287360 Worker exiting (pid: 982686)

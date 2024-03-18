@@ -2,10 +2,10 @@ import multiprocessing
 import os
 
 # The socket to bind
-bind = f"0.0.0.0:{os.getenv('PORT', 8000)}"
+#bind = f"0.0.0.0:{os.getenv('PORT', 8000)}"
 
 # Number of worker processes
-workers = 1 #multiprocessing.cpu_count() * 2 + 1
+workers = multiprocessing.cpu_count() * 2 + 1
 
 # Worker class
 # 'sync', 'gthread', 'gevent', 'eventlet' are some of the options
