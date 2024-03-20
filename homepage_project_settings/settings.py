@@ -96,6 +96,7 @@ configure_logging()
 
 # Application definition
 INSTALLED_APPS = [
+    'corsheaders',
     'csp',
     'homepage_app',
     'django.contrib.admin',
@@ -110,6 +111,7 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'homepage_project_settings.middleware.ValidateHostMiddleware',
     'csp.middleware.CspNonceMiddleware',
     'csp.middleware.CspHeaderMiddleware',
@@ -192,6 +194,7 @@ STATICFILES_DIRS = [
 ]
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 
 
@@ -245,4 +248,13 @@ LOGGING = {
             'propagate': False,
         },
     },
+
 }
+
+# Works with 'django-cors-headers' to allow CORS requests
+"""CORS_ALLOWED_ORIGINS = [
+"https://localhost:8000",
+]
+"""
+CORS_ALLOW_ALL_ORIGINS = True
+print(f'CORS_ALLOW_ALL_ORIGINS is True')

@@ -1,3 +1,4 @@
+import base64
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
@@ -8,8 +9,8 @@ from .helpers import configure_logging, datetime, dnr_email_address, domain_name
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from email.mime.text import MIMEText
-import base64
 import os
+import xml.etree.ElementTree as ET
 
 
 
@@ -30,23 +31,52 @@ def csp_violation_report(request):
 
 
 # View to that performs an HTTP request to the substack API. Used to bypass CORS issues.
-def substack_proxy(request):
-    print(f'running substack_proxy() ... function started')
-    logger.debug(f'running substack_proxy() ... function started')
+def fetch_substack_rss(request):
+    print(f'running fetch_substack_rss() ... function started')
+    logger.debug(f'running fetch_substack_rss() ... function started')
     
     # Target URL to fetch from Substack API
-    target_url = 'https://substackapi.com/api/feeds/?limit=3&sort=new'
-    
-    # Forward the request to the Substack API
+    target_url = 'https://matthewmcdonnell.substack.com/feed'
+    print(f'running fetch_substack_rss() ... target_url is: { target_url }')
+    logger.debug(f'running fetch_substack_rss() ... target_url is: { target_url }')
     response = requests.get(target_url)
-    print(f'running substack_proxy() ... JsonResponse(response.json(), safe=False) is { JsonResponse(response.json(), safe=False) } ')
-    logger.debug(f'running substack_proxy() ... JsonResponse(response.json(), safe=False) is { JsonResponse(response.json(), safe=False) } ')
     
-    # Return the Substack API response as a JSON response
-    logger.debug(f'running substack_proxy() ... function ended')
-    return JsonResponse(response.json(), safe=False)
+    # If there is an ok response from the RSS feed url, do the following...
+    if response.status_code == 200:
+        # Namespaces are required to correctly parse elements like dc:creator
+        namespaces = {
+            'dc': 'http://purl.org/dc/elements/1.1/'
+        }
 
+        root = ET.fromstring(response.content)
+        items = root.findall('.//item')
 
+        # Forward the request to the Substack API
+        number_of_articles = 3
+
+        articles = []
+        for item in items[:number_of_articles]:  # Limiting to the first 3 articles
+            title = item.find('title').text
+            description = item.find('description').text
+            link = item.find('link').text
+            pubDate = item.find('pubDate').text
+            # Extracting author name using the namespace dictionary
+            author = item.find('dc:creator', namespaces).text if item.find('dc:creator', namespaces) is not None else "Unknown"
+            enclosure = item.find('enclosure')
+            image = enclosure.get('url') if enclosure is not None else None
+
+            articles.append({
+                'title': title,
+                'description': description,
+                'link': link,
+                'pubDate': pubDate,
+                'author': author,  # Author name extracted from dc:creator
+                'image': image,
+            })
+            
+        return JsonResponse({'articles': articles})
+    else:
+        return JsonResponse({'error': 'Failed to fetch RSS feed'}, status=500)
 
 # Readiness check (needed for serving via GCP)
 def readiness_check(request):

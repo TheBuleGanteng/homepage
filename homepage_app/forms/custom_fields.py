@@ -10,7 +10,7 @@ import re
 allowed_input_letters_lower = 'a-z'
 allowed_input_letters_upper = 'A-Z'
 allowed_input_numbers = '0-9'
-allowed_input_symbols_strict = '-.@_ '
+allowed_input_symbols_strict = '-.@_ :'
 allowed_input_symbols_phone = '+-. ()+ext'
 
 

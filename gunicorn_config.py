@@ -5,7 +5,7 @@ import os
 #bind = f"0.0.0.0:{os.getenv('PORT', 8000)}"
 
 # Number of worker processes
-workers = multiprocessing.cpu_count() * 2 + 1
+workers = 1 #multiprocessing.cpu_count() * 2 + 1
 
 # Worker class
 # 'sync', 'gthread', 'gevent', 'eventlet' are some of the options
