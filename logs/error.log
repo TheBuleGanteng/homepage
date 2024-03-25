@@ -8628,3 +8628,5 @@ IndentationError: unexpected indent
 [2024-03-20 15:50:20 +0800] [1103573] [INFO] Using worker: sync
 [2024-03-20 15:50:20 +0800] [1103574] [INFO] Booting worker with pid: 1103574
 [2024-03-20 15:50:20 +0800] [1103573] [DEBUG] 1 workers
+[2024-03-20 16:14:46 +0800] [1103573] [INFO] Handling signal: int
+[2024-03-20 16:14:46 +0800] [1103573] [INFO] Shutting down: Master
