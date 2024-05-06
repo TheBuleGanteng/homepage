@@ -1,0 +1,71 @@
+{% extends 'personal_website/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Matt McDonnell: ReturnKey</title>
+<link rel='canonical' href='https://mattmcdonnell.net/returnkey'/>
+<meta name='description' content='Review of ReturnKey, an Southeast Asia reverse logistics platform co-founded by Matthew McDonnell, CFA.'>
+{% endblock %}
+
+{% block main %}
+<div class='container-fluid min-vh-100 text-center bg-dark text-light p-0'>
+
+    <!-- section: logo and fast facts -->
+    <section class='section bottom-border' id='returnkey-intro'>
+        <div class='container-fluid text-start'>
+            <div class='text-center text-md-start'>
+                <a> <img class='img-fluid border border-3' src='{% static "personal_website/assets/logo_returnkey.jpg" %}' alt='ReturnKey logo' width='150px'></a>
+            </div>
+            <div class='row text-center text-md-start'>
+                <h1>ReturnKey</h1>        
+                <p class='lead'>
+                    Returns management software for e-commerce sellers
+                </p>
+            </div>
+            <div class='row text-center text-md-start pt-1'>
+                <h4>Fast facts:</h4>
+                <div class='row text-start ms-3'>
+                    <ul>
+                        <li><strong>Outcome: </strong>Exited (2022)</li>
+                        <li><strong>Company active: </strong>2020-current</li>
+                        <li><strong>Funding raised: </strong>Undisclosed</li>
+                        <li><strong>Category: </strong>E-commerce / Reverse logistics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /section: logo and fast facts -->
+
+    <!-- section: problem statement -->
+    <section class='section bottom-border' id='returnkey-problem-statement'>
+        <div class='container-fluid'>
+            <div class='row text-center text-md-start'>
+                <h4>Problem Statement: Returning items purchased online in Southeast Asia is an expensive hassle for sellers and consumers.</h4>
+                <p>E-commerce volumes in Southeast Asia continue their strong growth, yet the experience of returning an item purchased online remains a UX nightmare for consumers and an operational bottleneck for sellers.</p>    
+                <div class='row text-start ms-3'>
+                    <ul>
+                        <li>Low average order value (AOV) and resulting focus on customer acquisiton at the expense of improved UX</li>
+                        <li>Prevailing cultural attitudes against, and unfamiliarity with, returning items</li>
+                        <li>Lack of technological sophistication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /section: problem statement -->
+
+    <!-- section: solution -->
+    <section class='section' id='returnkey-problem-statement'>
+        <div class='container-fluid'>
+            <div class='row text-center text-md-start pb-1'>
+                    <h4>ReturnKey's Solution: Plug-and-play returns management software for online sellers</h4>
+                    <p>ReturnKey develops and sells market-leading returns management software that allows online sellers to deliver a fully-automated, self-service returns experience to customers that is tailored to that seller's own return policy.</p>   
+                </div>
+            </div>
+        </div>    
+    </section>
+    <!-- /section: solution -->
+
+</div>
+{% endblock %}

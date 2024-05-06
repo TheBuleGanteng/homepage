@@ -1,0 +1,79 @@
+{% extends 'personal_website/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Matt McDonnell: Contact</title>
+<link rel='canonical' href='https://mattmcdonnell.net/contact'/>
+<meta name='description' content='Contact page for Matthew McDonnell, CFA. Part of Matthew McDonnell, CFA homepage.'>
+{% endblock %}
+
+{% block main %}
+<!-- Contact Form Section -->
+<section class='section' id='contact_form'>
+    <div class='container-fluid text-start'>
+        <div class='row'>
+            <div class='col-sm-8 text-start'>
+                <h5>Please complete the form below to contact me. I'd love to hear from you!</h5>
+                <div class='container_contact'>
+                    <form method='post'>
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        
+                        <!-- name -->
+                        <div class="mb-3">
+                            {{ form.name.label_tag }} {{ form.name }}
+                            {% if form.name.errors %}
+                                {% for error in form.name.errors %}
+                                    <div class="error">{{ error }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- /name -->
+                        
+                        <!-- email -->
+                        <div class="mb-3">
+                            {{ form.email.label_tag }} {{ form.email }}
+                            {% if form.email.errors %}
+                                {% for error in form.email.errors %}
+                                    <div class="error">{{ error }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- /email -->
+                        
+                        
+                        <!-- phone (country code and Number) -->
+                        <div class="mb-3 row">
+                            <div class='col-sm-12'>
+                                {{ form.phone.label_tag }}
+                                <div class="d-flex">
+                                    {{ form.phone }}
+                                </div>
+                                {% if form.phone.errors %}
+                                    {% for error in form.phone.errors %}
+                                        <div class="error">{{ error }}</div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- /phone (country code and cumber) -->
+
+                        <!-- body -->
+                        <div class="mb-3">
+                            {{ form.body.label_tag }} {{ form.body }}
+                            {% if form.body.errors %}
+                                {% for error in form.body.errors %}
+                                    <div class="error">{{ error }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- /body -->
+
+                        <button type='submit' class='btn btn-primary'>Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'personal_website/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Matt McDonnell: TokoBox</title>
+<link rel='canonical' href='https://mattmcdonnell.net/tokobox'/>
+<meta name='description' content='Review of Tokobox, an Indonesian social commerce platform co-founded by Matthew McDonnell, CFA.'>
+{% endblock %}
+
+{% block main %}
+<div class='container-fluid min-vh-100 text-center bg-dark text-light p-0'>
+
+    <!-- section: logo and fast facts -->
+    <section class='section bottom-border' id='tokobox-intro'>
+        <div class='container-fluid text-start'>
+            <div class='text-center text-md-start'>            
+                <a> <img class='img-fluid border border-3' src='{% static "personal_website/assets/logo_tokobox.png" %}' alt='ReturnKey logo' width='150px'></a>
+            </div>     
+            <div class='row text-center text-md-start'>
+                <h1>TokoBox</h1>        
+                <p class='lead'>
+                    Social commerce enablement
+                </p>
+            </div>
+            <div class='row text-center text-md-start pt-1'>
+                <h4>Fast facts:</h4>
+                <div class='row text-start ms-3'>
+                    <ul>
+                        <li><strong>Outcome: </strong>Closed business</li>
+                        <li><strong>Company active: </strong>2019-2020</li>
+                        <li><strong>Funding raised: </strong>Pre-seed from: <a href='https://www.antler.co' target='_blank' class='link'>Antler (Singapore)</a></li>
+                        <li><strong>Category: </strong></strong>E-commerce / Social Commerce</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /section: logo and fast facts -->
+
+    <!-- section: problem statement -->
+    <section class='section bottom-border' id='tokobox-problem-statement'>
+        <div class='container-fluid'>
+            <div class='row text-center text-md-start'>
+                <h4>Problem Statement: Consumers in rural areas face limited access to goods due to poor e-commerce penetration</h4>
+                <p>Despite being home to well-known e-commerce platforms such as Shopee, Tokopedia, Lazada, and others, most Indonesians have yet to adopt these platforms.  The reasons for this lack of adoption are many and include:</p>    
+                <div class='row text-start ms-3'>
+                    <ul>
+                        <li>Cultural desire for relationships between buyers and sellers as a means of preventing fraud</li>
+                        <li>Lack of technological sophistication</li>
+                        <li>Expensive delivery services, relative to average order value (AOV)</li>
+                        <li>Lack of, or unfamiliarity with, one's mailing address</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /section: problem statement -->
+
+    <!-- section: solution -->
+    <section class='section bottom-border' id='tokobox-problem-statement'>
+        <div class='container-fluid'>
+            <div class='row text-center text-md-start pb-1'>
+                    <h4>Tokobox's Solution: Enable selling within social networks, sourcing from e-commerce platforms</h4>
+                    <p>Taking inspiration from Indian social selling unicorn <a href='https://play.google.com/store/apps/details?id=com.meesho.supply&hl=en_US&pli=1' target='_blank' class='link'>Meesho</a>, Tokobox developed a simple web application that allowed users to sell goods to friends and family by sharing product information over popular social media channels such as Instagram, Facebook, and WhatsApp. In so doing, the seller earned an attractive commission on all items sold, while the buyer gained greater access to goods than would otherwise be available in his or her community.Taking inspiration from Indian social selling unicorn <a href='https://play.google.com/store/apps/details?id=com.meesho.supply&hl=en_US&pli=1' target='_blank' class='link'>Meesho</a>, Tokobox developed a simple web application that allowed users to sell goods to friends and family by sharing product information over popular social media channels such as Instagram, Facebook, and WhatsApp. In so doing, the seller earned an attractive commission on all items sold, while the buyer gained greater access to goods than would otherwise be available in his or her community.</p>   
+                </div>
+            </div>
+            <div class='col-md-3 text-center text-md-end'>
+                <a> <img class='img' id='tokobox-demo-gif' src='{% static "personal_website/assets/demo_tokobox.gif" %}' alt='Tokobox Demo'></a>  
+            </div>
+        </div>    
+    </section>
+    <!-- /section: solution -->
+
+</div>
+{% endblock %}

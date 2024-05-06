@@ -1,0 +1,252 @@
+{% extends 'personal_website/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Matt McDonnell</title>
+<link rel="canonical" href="https://mattmcdonnell.net"/>
+<meta name="description" content="Homepage for Matthew McDonnell, CFA. Reviews work Matthew McDonnell has done in Finance and Technology in both the United States and in Southeast Asia, including time at Boston Consulting Group (BCG), Tokobox (Indonesian social commerce), and ReturnKey (Southeast Asia reverse logistics). Also showcases Matthew McDonnell's work in programming in python, javascript, html, css, and django.">
+{% endblock %}
+
+{% block main %}
+<div class='container-fluid min-vh-100 text-center bg-dark text-light p-0'>
+  
+  <!-- section: typerwriter effect -->
+  <section class='section bottom-border'>
+    <div class='flex-container' id='index-intro'>
+      <span class='text typewriter primary first-text'>Let's:</span>
+      <span class='text typewriter secondary second-text'></span>
+    </div>  
+  </section>
+  <!-- /section: typerwriter effect -->
+  
+  
+  <!-- section: about me -->
+  <section class='section bottom-border' id='about-me'>
+    <div class='container-fluid text-start pt-3 pb-3'>
+      
+      <!-- about me header text -->
+      <div class='row justify-content-center align-items-center text-start'>  
+        <h2 class='display-6'>About me</h1>
+          <p class='lead'>
+              U.S. born, and based in Singapore and Jakarta. A 2x Co-Founder and former BCG Consultant, I enjoy developing and implementing sustainable products and processes for high-growth companies. Fuelled by dangdut karaoke and nasi goreng.  
+          </p>
+          <p class='lead'>
+            My professional experience includes the following: 
+        </p>
+      </div>
+      <!-- /about me header text -->
+
+      <!-- accordion -->            
+      <div class="accordion accordion-flush text-start" id="index_accordion">
+          
+        <!-- first accordion item -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Advisor, Returnkey (2022-2023)
+            </button>
+          </h4>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Ongoing ad-hoc support to the startup I co-founded in 2020</strong>
+            </div>
+          </div>
+        </div>
+        <!-- /first accordion item -->
+
+        <!-- second accordion item -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Co-Founder, COO, ReturnKey (2020-2022)
+            </button>
+          </h4>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Took an idea from zero to one by assembling and enabling a world-class team.</strong>
+                <ul>
+                  <li>Built the organization’s operations, finance, and administrative teams, incl. JD creation, candidate evaluation, culture building, and development of employee evaluation and growth frameworks</li>
+                  <li>Designed, tested, and approved product updates for release</li>
+                  <li>Designed, implemented, and managed operational stopgaps for product features awaiting delivery</li>
+                  <li>Drove all legal and compliance initiatives associated with company establishment, licensing, and regulatory adherence</li>                    
+                </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /second accordion item -->
+        
+        <!-- third accordion item -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Saison Capital Scout, 2020-2022
+            </button>
+          </h4>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Initial screening of SEA-based startups interested in raising venture funding.</strong>
+              <p>Credit Saison is a Tokyo-listed $30B AUM consumer finance company and one of the largest credit card issuers in Japan. I support the corporate venture arm where we do direct and fund of fund investments.</p>
+              <p>Saison Capital's investments include Grab, where we helped to build its business finance unit, Shopback (Softbank/Temasek-backed), and other startups such as Ula (B2B e-commerce) Bukukas (Digital Bookkeeping), and Koinworks (SME lending). Saison Capital's LP investments include some of the top-performing funds in SEA (East Ventures, Beenext), and global funds such as Quona Capital, Better Tomorrow Ventures, and Antler.</p>
+              <p>Find out more at www.saisoncapital.com</p>
+            </div>
+          </div>
+        </div>
+        <!-- /third accordion item -->
+
+        <!-- fourth accordion item -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Co-Founder, CEO, Tokobox (2019-2020)
+            </button>
+          </h4>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Raised initial funding, designed and led operations.</strong>
+              <p>Tokobox was a social commerce platform that used social media to allow rural Indonesians to build their own business by selling dropshipped items to their friends, family, and neighbors. By integrating into pre-existing consumer behaviors, Tokobox sought to bring e-commerce to the >90% of Indonesians who do not currently use major e-commerce platforms.</p>
+              
+              <p>Responsibilities included managing daily operations across >1,000 registered sellers, building an awesome team, and exciting investors about our prospects.</p>
+            </div>
+          </div>
+        </div>
+        <!-- /fourth accordion item -->
+
+        <!-- fifth accordion item -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Project Leader (Manager), Boston Consulting Group (2018-2019)
+            </button>
+          </h4>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Responsible for project team and client relationship management</strong>
+              <ul>
+                <li>SME banking transformation at a leading regional bank.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /fifth accordion item -->
+
+        <!-- sixth accordion item -->
+        <div class="accordion-item">
+          <h4 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Consultant, Boston Consulting Group (2016-2018)
+            </button>
+          </h4>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Experience across industries (Financial Services, Energy, and Life Sciences) and geographies in South East Asia. Functional experience includes:</strong>
+              <ul>
+                <li>Fintech business design and launch</li>
+                <li>Commercial due diligence in financial services</li>
+                <li>Market entry for middle-office financial services</li>
+                <li>Lean production system implementation for a global biopharma</li>
+                <li>Organizational transformation for a leading regional energy company</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /sixth accordion item -->
+
+      </div>
+      <!-- /accordion -->
+    </div>  
+    <!-- div for container holding cv content-->    
+  </section>
+  <!-- section: job history accordion -->
+  
+  
+  <!-- section: portfolio  -->
+  <section class='section bottom-border' id='portfolio'>
+    <div class="container-fluid text-start mb-5">
+      <h1 class="display-6">Things I've built</h1>
+      <p class="lead">
+        I'm currently finishing <a href='https://cs50.harvard.edu/web/2020/' target="_blank" class='link'>CS50’s Web Programming with Python and JavaScript</a>. Code for everything below (except assignments where code distribution is prohibited) is freeely available on <a href='https://github.com/TheBuleGanteng' target='_blank' class='link'>GitHub</a>.
+      </p>
+    </div>
+
+    <!-- The parent container to hold all examples -->
+    <div class="container-fluid text-start">
+      
+      <div class='col-lg-5'>
+        <div class='row m-0'>
+
+          <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="false">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <iframe class='d-block w-100' src='https://www.youtube.com/embed/93LwPjb0vRM?si=q-jm8BdcIWTlLGBW' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>
+                <!-- <img src="..." class="d-block w-100" alt="..."> -->
+                <div class="carousel-caption d-none d-md-block">
+                  <!-- <h5>First slide label</h5> -->
+                  <p>Watch a video overview</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src='{% static "personal_website/assets/AppScreenshot_MyFinance50_1.png" %}' class="d-block w-100" alt="MyFinance50_Screenshot1">
+                <div class="carousel-caption d-none d-md-block">
+                  <!-- <h5>Second slide label</h5> -->
+                  <p>Monitor real-time returns</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src='{% static "personal_website/assets/AppScreenshot_MyFinance50_2.png" %}' class="d-block w-100" alt="MyFinance50_Screenshot1">
+                <div class="carousel-caption d-none d-md-block">
+                  <!-- <h5>Third slide label</h5> -->
+                  <p>Research companies</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src='{% static "personal_website/assets/AppScreenshot_MyFinance50_3.png" %}' class="d-block w-100" alt="MyFinance50_Screenshot1">
+                <div class="carousel-caption d-none d-md-block">
+                  <!-- <h5>Forth slide label</h5> -->
+                  <p>View transaction history</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <div class='row m-0 pt-1 pb-1'>
+            <span class='no-margin-no-padding'><b>MyFinance50:</b> A paper trading brokerage account that leverages real-time market data to enable the "purchase" and "sale" of stocks and the computation of detailed before-and-after tax returns.</span>
+          </div>
+          <div class='row m-0 p-0'>
+            <a href='https://apps-cs50finance.as.r.appspot.com/'> <button type='button' class='btn btn-primary w-100'>Launch App</button></a>
+          </div>
+        </div>
+          
+      </div>
+            
+    </div>    
+  </section>  
+
+  <!-- /section: portfolio  -->
+
+  <!-- section: substack feed  -->
+  <section id = "index_substack_feed pb-10 pt-5">
+    <div class="container-fluid text-start pt-2 mb-5">
+      <div class="row justify-content-center align-items-center text-start">  
+        <h1 class="display-6 mt-1 mb-3">Things I've written</h1>
+        <div id="substack-feed-embed"></div>   
+    </div>
+  </section>
+  <!-- /section: substack feed  -->
+
+</div>
+<!-- this allows the JS for the substack api to be included here (but not on other pages)-->
+{{ block.super }}
+{% endblock %}

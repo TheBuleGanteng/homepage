@@ -1,0 +1,147 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- google analytics tag (gtag.js) and JS -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-62CJ8QX96T"></script>
+        <script src='{% static "personal_website/javascript/googleAnalytics.js" %}'></script>
+        <!-- /google analytics tag (gtag.js) and JS -->
+        
+        <!-- general settings -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link rel='icon' type='image/x-icon' href='{% static "personal_website/assets/profile_logo.jpg" %}'>
+        <!-- general settings -->
+
+        <!-- boostrap and custom CSS and Javascript -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel='stylesheet' href='{% static "personal_website/css/styles.css" %}'>
+        <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <!-- /bootstrap and custom CSS and Javascript -->
+        
+        <!-- jinja: title -->
+        {% block title %}
+        {% endblock %}
+        <!-- /jinja: title -->        
+    </head>
+
+    <body>
+
+        <!-- navbar -->
+        <nav class='navbar navbar-dark bg-dark navbar-expand-lg' id='navbar'>
+            <div class='container-fluid'>
+                
+                <!-- navbar brand -->
+                <a class='navbar-brand' href='{% url "personal_website:index" %}'>
+                    <img src='{% static "personal_website/assets/profile_logo.jpg" %}' alt='profile logo' class='navbar-fixed-height-img'>
+                    Matt McDonnell, CFA
+                </a>
+                <!-- /navbar brand -->
+
+                <!-- navbar button to be shown on collapse -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <!-- collapsing navbar content -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+                    <!-- left-aligned collapsing navbar content -->
+                    <ul class="navbar-nav">    
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href='{% url "personal_website:index" %}'>Home</a>
+                        </li>
+                        <li class='nav-item dropdown'>
+                            <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                Portfolio
+                            </a>
+                            <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                <li><a class='dropdown-item' href='https://apps-cs50finance.as.r.appspot.com/'>MyFinance50</a></li>
+                                <!--
+                                <li><a class='dropdown-item' href='#'>SavorScript</a></li>
+                                <li><hr class='dropdown-divider'></li>
+                                <li><a class='dropdown-item' href='#'>WIP project</a></li>
+                                -->
+                            </ul>
+                        </li>
+                        <li class='nav-item dropdown'>
+                            <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                Companies founded
+                            </a>
+                            <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                <li><a class='dropdown-item' href='{% url "personal_website:returnkey" %}'>ReturnKey</a></li>
+                                <li><a class='dropdown-item' href='{% url "personal_website:tokobox" %}'>TokoBox</a></li>
+                                <li><a class='dropdown-item' href='#'>Nasgor Bang Mamat</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href='{% url "personal_website:contact" %}'>Contact me</a>
+                        </li>
+                    </ul>
+                    <!-- /left-aligned collapsing navbar content -->
+                    <ul class="navbar-nav ms-auto p-0">
+                        <!-- right-aligned collapsing navbar content -->
+                        <div class='ms-auto'>
+                            <a href='https://www.linkedin.com/in/matthewjmcdonnell/'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_linkedin.png" %}'  target='_blank' alt='LinkedIn logo'></a>
+                            <a href='https://github.com/TheBuleGanteng'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_github.png" %}'  target='_blank' alt='GitHub logo'></a>
+                            <a href='https://www.duolingo.com/profile/TheBuleGanteng'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_duolingo.png" %}' target='_blank' alt='Duolingo logo'></a>
+                            <a href='https://matthewmcdonnell.substack.com/'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_substack.png" %}' target='_blank' alt='Substack logo'></a>
+                            <a href='https://twitter.com/mattjmcdonnell'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_twitter.png" %}' target='_blank' alt='Twitter logo'></a>
+                        </div>
+                        <!-- right-aligned collapsing navbar content -->
+                        
+                    </ul>
+                </div>
+                
+                <!-- /navbar collapsing navbar content -->
+            </div>  
+        </nav>
+        <!-- /navbar -->
+
+        <!-- flash message -->
+        {% if messages %}
+        <header>
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-warning{% elif message.tags == 'success' %}alert-success{% elif message.tags == 'info' %}alert-primary{% elif message.tags == 'warning' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </header>
+        {% endif %}
+        <!-- /flash message -->
+
+        <!-- main -->
+        {% block main %}
+        
+            <!-- script that can be included on a page via use of '{{ block.super }}'-->
+            <script  src='{% static "personal_website/javascript/substackFeed.js" %}'></script>
+            <script  src='{% static "personal_website/javascript/typewriterEffect.js" %}'></script>
+            <!-- /script that can be included on a page via use of '{{ block.super }}'-->        
+        {% endblock %}
+        <!-- /main -->
+    
+        <!-- footer -->
+        <footer class='container-fluid fixed-bottom footer'>
+            <div class='row'>
+                <div class='col-10'>
+                    <h6>Matthew McDonnell, CFA - 2024</h6>
+                </div>
+                <div class='col ms-auto text-end'>
+                    <a href='/sitemap' class='sitemap-link'>Site Map</a>
+                    <a id='contact-link-footer' href='{% url "personal_website:contact" %}'>Contact</a>
+                </div>
+            </div>
+        </footer>
+        <!-- /footer -->
+
+    <!-- custom JavaScript file -->
+    <div class='custom-JS-scripts-in-layout m-0 p-0'>
+        <script  src='{% static "personal_website/javascript/lightDarkMode.js" %}'></script>
+    </div>
+    <!-- /custom JavaScript file -->
+
+    </body>
+
+</html>
