@@ -1,0 +1,4 @@
+# created by virtualenv automatically
+gitignored/
+*__pycache__*
+.env
