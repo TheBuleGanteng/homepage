@@ -66,12 +66,12 @@ logger.debug(f'running settings.py ... DEBUG is: { DEBUG }')
 # Application definition
 INSTALLED_APPS = [
     # Apps created for this project
-    #'brokerage',
-    #'users', # Manages registration, user profiles, login, passwords
-    'utils', # Manages CSP reporting, nonce generation, readiness check
-    # Utilities
-    'csp',
+    'brokerage',
+    'users', # Manages registration, user profiles, login, passwords
     'personal_website',
+    'utils', # Manages CSP reporting, nonce generation, readiness check
+    'csp',
+    
     # Default Django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -98,7 +98,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF ='personal_website.urls'
+ROOT_URLCONF ='homepage.urls'
 
 TEMPLATES = [
     {
@@ -261,7 +261,7 @@ if 'csp_file' in LOGGING['loggers']['csp_reports'].get('handlers', []):
 
 # Added to allow for authentication based on user's email
 AUTHENTICATION_BACKENDS = [
-    'MyFin50d_project.authentication_backend.EmailAuthBackend',  # Update this to the actual path of the backend
+    'homepage.authentication_backend.EmailAuthBackend',  # Update this to the actual path of the backend
     'django.contrib.auth.backends.ModelBackend',  # Default ModelBackend for admin and others
 ]
 
@@ -269,7 +269,7 @@ AUTHENTICATION_BACKENDS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'shared_templates')],  # Custom shared templates
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

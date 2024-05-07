@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from .forms.forms import ContactForm
-from .helpers import configure_logging, datetime, dnr_email_address, domain_name, get_country_code, info_email_address, logging, os, Path, requests, send_email
+from .helpers import configure_logging, datetime, dnr_email_address, PROJECT_NAME, get_country_code, info_email_address, logging, os, Path, requests, send_email
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from email.mime.text import MIMEText
@@ -135,9 +135,9 @@ def contact(request):
                 logger.info(f'running contact() ... method is POST and form passes validation')
 
                 email = request.POST['email']
-                sender = os.getenv('INFO_EMAIL_ADDRESS')
+                sender = os.getenv('EMAIL_ADDRESS_INFO')
                 print(f'running contact() ... sender is: {sender}')
-                recipient = os.getenv('INFO_EMAIL_ADDRESS')
+                recipient = os.getenv('EMAIL_ADDRESS_INFO')
                 country_code = get_country_code(request.POST['phone_0']) 
                 phone = country_code+' '+request.POST['phone_1'] or None
                 body = request.POST['body']
@@ -150,7 +150,7 @@ Message body: { body }
 Message timestamp: { datetime.now() }
 
 Thank you,
-{ domain_name }-bot at your service!
+{ PROJECT_NAME }-bot at your service!
 '''
 
                 send_email(body=body, recipient=recipient, sender=sender, subject=subject)                

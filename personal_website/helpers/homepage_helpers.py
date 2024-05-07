@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 personal_email_address= os.getenv('PERSONAL_EMAIL_ADDRESS')
 info_email_address= os.getenv('INFO_EMAIL_ADDRESS')
 dnr_email_address= os.getenv('DNR_EMAIL_ADDRESS')
-domain_name= os.getenv('DOMAIN_NAME')
+PROJECT_NAME= os.getenv('PROJECT_NAME')
 
 
 # Generate country code from 2-letter country abbreviation
@@ -40,7 +40,7 @@ def send_email(body, recipient, sender, subject):
     
     try:
         # Absolute path to the service account file
-        SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(__file__), '..', 'gitignored', 'gmail_access_credentials.json')
+        SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'gitignored', 'gmail_access_credentials.json')
 
         # Define the required scope for sending emails
         SCOPES = ['https://www.googleapis.com/auth/gmail.send']

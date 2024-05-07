@@ -19,10 +19,16 @@ from django.urls import include, path
 from personal_website.views import readiness_check
 from utils.views import readiness_check_view
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('personal_website.urls', namespace='personal_website')),
+    path('csp/', include('csp.urls', namespace='csp')),
+    path('myfinance50/', include([
+        path('', include(('brokerage.urls', 'brokerage'), namespace='brokerage')),
+        path('', include(('users.urls', 'users'), namespace='users')),
+    ])),
     path('readiness_check/', readiness_check, name='readiness_check'),
-    path('utils/', include(('utils.urls', 'utils'), namespace='utils')),
+    path('utils/', include('utils.urls', namespace='utils')),
 ]
 

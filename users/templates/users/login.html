@@ -1,0 +1,66 @@
+{% extends 'users/layout.html' %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+    <!-- boostrap5 loading spinner -->
+    <div id='loadingSpinner' class='d-flex align-items-center justify-content-center'>
+        <div>
+        <strong>Loading...</strong>
+        <div class='spinner-border ms-auto' role='status' aria-hidden='true'></div>
+        </div>
+    </div>
+    <!-- /boostrap5 loading spinner -->
+
+    <div class='container-fluid text-center pt-2 pb-5'>
+        
+        <!-- login form -->
+        <form action='{% url "users:login" %}' method='post'>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            
+            <!-- email -->
+            <div class='mb-3'>
+                {{ form.email }}
+            </div>
+            <div class='mb-3'>
+                {% if form.email.errors %}
+                    <div class='errors'>
+                        {% for error in form.email.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <!-- /email -->
+
+            <!-- password -->
+            <div class='mb-3'>
+                {{ form.password }}
+            </div>
+            <div class='mb-3'>
+                {% if form.password.errors %}
+                    <div class='errors'>
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <!-- /password -->
+            
+            <button type='submit' class='btn btn-primary' id='submit_button'>Log In</button>
+        </form>
+        <!-- /login form -->
+
+        <!-- links to register or reset pw -->
+        <a href='{% url "users:register" %}'>New user? Click here to create an account</a>
+        <br>
+        <a href='{% url "users:password_reset" %}'>Forgot your password? Click here to reset</a>
+        <!-- /links to register or reset pw -->
+
+    </div>
+{% endblock %}
