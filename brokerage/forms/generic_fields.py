@@ -1,9 +1,10 @@
 import decimal
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 from .filters_validators import *
 from users.models import UserProfile
-__all__ = ['accounting_method', 'cash_initial', 'CustomDecimalField', 'email', 'first_name', 'last_name', 'password', 'password_confirmation', 'password_old', 'shares', 'symbol', 'tax_loss_offsets', 'tax_rate_STCG', 'tax_rate_LTCG', 'USDTextInput', 'username', 'username_old']
+__all__ = ['accounting_method', 'cash_initial', 'CustomDecimalField', 'date_end', 'date_start', 'email', 'first_name', 'last_name', 'password', 'password_confirmation', 'password_old', 'shares', 'symbol', 'tax_loss_offsets', 'tax_rate_STCG', 'tax_rate_LTCG', 'transaction_type', 'USDTextInput', 'username', 'username_old']
 
 
 
@@ -23,6 +24,7 @@ class UppercaseCharField(forms.CharField):
             return value
         return value.upper()
 
+
 class USDTextInput(forms.TextInput):
     def format_value(self, value):
         # Check if the value is a Decimal instance and format it
@@ -34,8 +36,6 @@ class USDTextInput(forms.TextInput):
 def validate_positive(value):
     if value <= 0:
         raise ValidationError('This field must be a positive integer.')
-
-
 
 
 accounting_method = forms.ChoiceField(
@@ -57,6 +57,28 @@ cash_initial = CustomDecimalField(
     widget=USDTextInput(attrs={  # Use the custom widget
         'autocomplete': 'off',
         'class': 'form-control USD',
+    })
+)
+
+date_end = forms.DateField (
+    label='Ending date:',
+    #initial=timezone.now().date(),  # Gets just the date part, ignoring time
+    required=False,
+    widget=forms.DateInput(attrs={
+        'type': 'date',
+        'autocomplete': 'off',
+        'class': 'form-control',
+    })
+)
+
+date_start = forms.DateField (
+    label='Starting date:',
+    #initial=timezone.now().date(),  # Gets just the date part, ignoring time
+    required=False,
+    widget=forms.DateInput(attrs={
+        'type': 'date',
+        'autocomplete': 'off',
+        'class': 'form-control',
     })
 )
 
@@ -190,6 +212,19 @@ tax_rate_LTCG = forms.DecimalField(
         'max': 50,  # Maximum value
     })
 )
+
+
+transaction_type = forms.ChoiceField(
+        label='Transaction type:',
+        widget=forms.RadioSelect(attrs={'class': 'form-radio-buttons'}),
+        choices=[
+            ('', 'All transactions'),
+            ('BOT', 'Purchases'),
+            ('SLD', 'Sales')
+        ],
+        initial='',  # Default to 'All transactions'
+        required=False  # Make it optional so that 'All transactions' can be a valid choice
+    )
 
 
 username = CharFieldRegexStrict(

@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from .filters_validators import *
 from .generic_fields import *
 #from ..models import UserProfile
-__all__ = ['BuyForm', 'QuoteForm', 'SellForm']
+__all__ = ['BuyForm', 'HistoryForm', 'QuoteForm', 'SellForm']
 
 #------------------------------------------------------------------------
 
@@ -29,6 +29,20 @@ class BuyForm(forms.Form):
 
 
 #---------------------------------------------------------------------------------------
+
+
+class HistoryForm(forms.Form):
+    
+    date_start=date_start
+    date_end=date_end
+    transaction_type=transaction_type
+
+    def clean(self):
+        cleaned_data = super().clean() # Use of super().clean() allows Django's built-in validation to happen first, and then the additional custom validation below is applied to that cleaned data.
+        return cleaned_data
+
+
+#--------------------------------------------------------------------------------------
 
 class QuoteForm(forms.Form):
     symbol=symbol

@@ -1,6 +1,7 @@
 # created by virtualenv automatically
 gitignored/
 homepage-venv/
+scripts/
 logs/
 *__pycache__*
 .env

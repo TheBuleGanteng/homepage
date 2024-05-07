@@ -10,6 +10,9 @@ from django.db.models.functions import Length
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.utils.dateformat import DateFormat
+from django.utils.dateparse import parse_date
+from django.utils.http import urlencode
 from django.views.decorators.http import require_http_methods
 from .forms import *
 from .helpers import *
@@ -43,12 +46,6 @@ def index_view(request):
         logger.debug(f'running / ... for user {user} ... portfolio.cash is: { portfolio.cash }')
     
 
-    """
-    # Call the function to create the portfolio object for the user
-    user = request.user
-    portfolio = process_user_transactions(user)
-    logger.debug(f'running / ... for user {user} ... portfolio.cash is: { portfolio.cash }')
-    """
 
     # Render the index page with the user and portfolio context
     context = {
@@ -204,31 +201,134 @@ def check_valid_symbol_view(request):
 @login_required(login_url='users:login')
 @require_http_methods(['GET', 'POST'])
 def history_view(request):
-    logger.debug('running brokerage app, history_view ... view started')
+    logger.debug(f'running brokerage app, history_view ... view started')
 
-    # Retrieve the user object for the logged-in user
-    user = request.user
-    history = user.transaction_set.all()
+    form = HistoryForm(request.POST or None)  # Initialize form with POST data if available
+    history = None
 
-    # Some additional calculations needed to for history:
-    for transaction in history:
-        if transaction.type == 'SLD':
-            transaction.total_CG_pre_tax = transaction.STCG + transaction.LTCG
-            transaction.total_CG_pre_tax_percent = transaction.total_CG_pre_tax / transaction.transaction_value_total
-            transaction.total_CG_tax = transaction.LTCG_tax + transaction.STCG_tax
-            transaction.STCG_post_tax = transaction.STCG * (1 - user.userprofile.tax_rate_STCG)
-            transaction.LTCG_post_tax = transaction.LTCG * (1 - user.userprofile.tax_rate_LTCG)
-            transaction.total_CG_post_tax = transaction.STCG_post_tax + transaction.LTCG_post_tax 
-            transaction.total_CG_post_tax_percent = transaction.total_CG_post_tax /  transaction.transaction_value_total
+    # Request is POST
+    if request.method == 'POST': 
+        logger.debug(f'running brokerage app, history_view ... user submitted via POST')
 
-    # Render the index page with the user and portfolio context
-    context = {
-        'user': user,
+        if form.is_valid():
+            logger.debug(f'running brokerage app, history_view ... user submitted via POST and the form passed validation')
+            
+            date_start = form.cleaned_data['date_start']
+            date_end = form.cleaned_data['date_end']
+            transaction_type = form.cleaned_data['transaction_type']
+
+            # Prepare URL parameters, only adding those provided to avoid errors
+            url_params = []
+            if date_start:
+                url_params.append('date_start={}'.format(date_start.strftime('%Y-%m-%d')))
+            if date_end:
+                url_params.append('date_end={}'.format(date_end.strftime('%Y-%m-%d')))
+            if transaction_type:
+                url_params.append('transaction_type={}'.format(transaction_type))
+
+            # Create the base URL for redirection
+            base_url = reverse("brokerage:history")
+            
+            # Only add parameters to the URL if they exist
+            if url_params:
+                query_string = '&'.join(url_params)
+                redirect_url = '{}?{}'.format(base_url, query_string)
+            else:
+                redirect_url = base_url
+            
+            # Redirect to the constructed URL
+            return redirect(redirect_url)
+        
+        else:
+            logger.debug(f'running brokerage app, history_view ... user submitted via POST and the form failed validation')
+            messages.error(request, 'Error via POST: Invalid input. Please see the red text below for assistance.')            
+            return render(request, 'brokerage/history.html', {'form': form, 'user': request.user, 'history': history})
+
+    # Request is GET
+    else:
+        logger.debug(f'running brokerage app, history_view ... user arrived via GET')
+        
+        date_start = request.GET.get('date_start')
+        date_end = request.GET.get('date_end')
+        transaction_type = request.GET.get('transaction_type')
+
+        logger.debug(f'running brokerage app, history_view ... user arrived via GET and request.GET.get(date_start) is: { date_start }')
+        logger.debug(f'running brokerage app, history_view ... user arrived via GET and request.GET.get(date_end) is: { date_end }')
+        logger.debug(f'running brokerage app, history_view ... user arrived via GET and request.GET.get(transaction_type) is: { transaction_type }')
+
+        # If date_start and date_end are in the URL
+        if date_start and date_end:
+
+            date_start = parse_date(date_start)
+            date_end = parse_date(date_end)
+
+            if date_start and date_end:
+                # Secondary validation to ensure ending date is not before start date
+                if date_end < date_start:
+                    messages.error(request, 'Ending date cannot be before starting date.')
+                    return render(request, 'brokerage/history.html', {'form': form, 'user': request.user, 'history': history})
+                
+                # If date_start, date_end, and transaction_type are in the URL
+                if transaction_type:
+                    logger.debug(f'running brokerage app, history_view ... url contains date_start, date_end, and transaction_type')    
+                    form = HistoryForm(data={'date_start': date_start, 'date_end': date_end, 'transaction_type': transaction_type})
+
+                # If only date_start and date_end are in the URL
+                else: 
+                    # Take in the dates in the URL and processes them via the form, so as to leverage the form's built-in validation capabilities.
+                    logger.debug(f'running brokerage app, history_view ... url contains date_start and date_end')
+                    form = HistoryForm(data={'date_start': date_start, 'date_end': date_end})
+
+            # date_start and date_end are in the HTML, but parsing fails. Throw an error.
+            else:
+                logger.debug(f'running brokerage app, history_view ... form failed validation')
+                logger.debug(f'Form errors: {form.errors}')  # Log specific form errors
+                messages.error(request, 'Error in GET: Invalid date format. Please use YYYY-MM-DD format.')
+                
+        # If only transaction_type is in the URL
+        elif transaction_type:
+            logger.debug(f'running brokerage app, history_view ... url contains transaction_type only')
+            form = HistoryForm(data={'transaction_type': transaction_type})
+
+        # Neither date_start, nor date_end, nor transaction_type are in the URL
+        else:
+            form = HistoryForm(data={})
+
+        user = request.user
+        
+        # Perform the DB query with the relevant params
+        if date_start and date_end:
+            if transaction_type in ['BOT', 'SLD']:
+                # Filter by date range and transaction type if type is 'BOT' or 'SLD'
+                history = user.transaction_set.filter(timestamp__date__gte=date_start, timestamp__date__lte=date_end, type=transaction_type)
+            else:
+                # Filter by date range only of transaction_type is not BOT or SLD, or transaction_type is not present at all.
+                history = user.transaction_set.filter(timestamp__date__gte=date_start, timestamp__date__lte=date_end)
+        elif transaction_type in ['BOT', 'SLD']:
+            # Filter by date range and transaction type if type is 'BOT' or 'SLD'
+                history = user.transaction_set.filter(type=transaction_type)
+        else:
+            history = user.transaction_set.all()
+
+        # Some additional calculations needed to for history:
+        for transaction in history:
+            if transaction.type == 'SLD':
+                transaction.total_CG_pre_tax = transaction.STCG + transaction.LTCG
+                transaction.total_CG_pre_tax_percent = transaction.total_CG_pre_tax / transaction.transaction_value_total
+                transaction.total_CG_tax = transaction.LTCG_tax + transaction.STCG_tax
+                transaction.STCG_post_tax = transaction.STCG * (1 - user.userprofile.tax_rate_STCG)
+                transaction.LTCG_post_tax = transaction.LTCG * (1 - user.userprofile.tax_rate_LTCG)
+                transaction.total_CG_post_tax = transaction.STCG_post_tax + transaction.LTCG_post_tax 
+                transaction.total_CG_post_tax_percent = transaction.total_CG_post_tax /  transaction.transaction_value_total
+        
+        context = {
+        'form': form,
         'history': history,
-    }
-    
-    # Render page, passing user and portfolio objects
-    return render(request, 'brokerage/history.html', context)
+        'user': request.user,
+        }
+
+        return render(request, 'brokerage/history.html', context)
+
 
 #--------------------------------------------------------------------------------
 

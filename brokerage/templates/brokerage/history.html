@@ -1,7 +1,6 @@
 {% extends 'brokerage/layout.html' %}
 {% load brokerage_filters %}
 
-
 {% block title %}
     Transaction History
 {% endblock %}
@@ -18,6 +17,103 @@
             </div>
         </div>
         <!-- /boostrap5 loading spinner -->
+
+        <!-- filter transactions container -->
+        <div class="container-fluid ps-0">
+
+            <!-- form instructions -->
+            <div class="container-fluid container-instructions-start-bold mb-1 fs-5">
+                Filter transactions by:
+            </div>
+            <!-- /form instructions -->
+
+            <!-- form -->
+            <form action='{% url "brokerage:history" %}' method='post'>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+            
+                <div class='row mb-2'>
+                    
+                    <!-- date_start -->
+                    <div class='col-sm-4 col-md-3 col-lg-2 align-self-start text-start'>
+                        
+                        <div class='row m-0 mb-1'>
+                            <label for='id_date_start' class='form-label-start form-label-start-no-padding fw-bold'>Starting date:</label>
+                        </div>
+                        
+                        <div class='row m-0 mb-1'>
+                            {{ form.date_start }}
+                            {% if form.date_start.errors %}
+                                <div class='text-danger mt-2'>
+                                    {% for error in form.date_start.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- /date_start -->
+
+                    <!-- date_end -->
+                    <div class='col-sm-4 col-md-3 col-lg-2 align-self-start text-start'>
+                        
+                        <div class='row m-0 mb-1'>
+                            <label for='id_date_end' class='form-label-start form-label-start-no-padding fw-bold'>Ending date:</label>
+                        </div>
+                        
+                        <div class='row  m-0 mb-1'>
+                            {{ form.date_end }}
+                            {% if form.date_end.errors %}
+                                <div class='text-danger mt-2'>
+                                    {% for error in form.date_end.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- /date_end -->
+
+                    <!-- transaction_type -->
+                    <div class='col-sm-4 col-md-3 col-lg-2 align-self-start text-start'>
+                        <div class='row m-0 mb-1'>
+                            <label class='form-label-start form-label-start-no-padding fw-bold'>Transaction type:</label>
+                        </div>
+                        <div class='row m-0 mb-1'>
+                            {{ form.transaction_type }}
+                            {% if form.transaction_type.errors %}
+                                <div class='text-danger mt-2'>
+                                    {% for error in form.transaction_type.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- /transaction_type -->
+
+                </div>    
+                
+                <div class='row mb-2'>
+                    <!-- clear filter button -->
+                    <div class='col-sm-6 col-md-4 col-lg-3 mb-1'>
+                        <a href='{% url "brokerage:history" %}' class='btn btn-secondary w-100'>Clear filter</a>
+                    </div>
+                    <!-- /clear filter button -->
+
+                    <!-- submit button -->
+                    <div class='col-sm-6 col-md-4 col-lg-3 mb-1'>
+                        <button type='submit' class='btn btn-success w-100 mt-1 mb-1' id='submit_button'>Apply filter</button>
+                    </div>
+                    <!-- /submit button -->                   
+                </div>
+            </form>
+            <!-- form -->
+
+        </div>
+        <!-- /filter transactions container -->
+
+
 
         <h2>Transaction History</h2>                   
 
@@ -47,43 +143,47 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Below are the values that have been passed in from app.py in the /quote function -->
-                    {% for transaction in history %}
-                        <tr>
-                            <td>{{ transaction.timestamp | date:'Y-m-d, H:i:s' }}</td>
-                            <td>{{ transaction.transaction_id }}</td>
-                            <td><a href='/myfinance50/quote?symbol={{ transaction.symbol }}'>{{ transaction.symbol }}</a></td>
-                            <td>{{ transaction.type }}</td>
-                            <td>{{ transaction.transaction_shares }}</td>
-                            <td>{{ transaction.transaction_value_per_share | filter_usd }}</td>
-                            <td>{{ transaction.transaction_value_total | filter_usd }}</td>
-                            {% if transaction.type == 'BOT' %}
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            {% else %}
-                            <td>{{ transaction.STCG | filter_usd }}</td>
-                            <td>{{ transaction.LTCG | filter_usd }}</td>
-                            <td>{{ transaction.total_CG_pre_tax | filter_usd }}</td>
-                            <td>{{ transaction.total_CG_pre_tax_percent | filter_percentage }}</td>
-                            <td>{{ transaction.STCG_tax | filter_usd }}</td>
-                            <td>{{ transaction.LTCG_tax | filter_usd }}</td>
-                            <td>{{ transaction.total_CG_tax | filter_usd }}</td>
-                            <td>{{ transaction.STCG_post_tax | filter_usd }}</td>
-                            <td>{{ transaction.LTCG_post_tax | filter_usd }}</td>
-                            <td>{{ transaction.total_CG_post_tax | filter_usd }}</td>
-                            <td>{{ transaction.total_CG_post_tax_percent | filter_percentage }}</td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
+                    {% if history %}
+                        <!-- Below are the values that have been passed in from app.py in the /quote function -->
+                        {% for transaction in history %}
+                            <tr>
+                                <td>{{ transaction.timestamp | date:'Y-m-d, H:i:s' }}</td>
+                                <td>{{ transaction.id }}</td>
+                                <td><a href='/myfinance50/quote?symbol={{ transaction.symbol }}'>{{ transaction.symbol }}</a></td>
+                                <td>{{ transaction.type }}</td>
+                                <td>{{ transaction.transaction_shares }}</td>
+                                <td>{{ transaction.transaction_value_per_share | filter_usd }}</td>
+                                <td>{{ transaction.transaction_value_total | filter_usd }}</td>
+                                {% if transaction.type == 'BOT' %}
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                {% else %}
+                                <td>{{ transaction.STCG | filter_usd }}</td>
+                                <td>{{ transaction.LTCG | filter_usd }}</td>
+                                <td>{{ transaction.total_CG_pre_tax | filter_usd }}</td>
+                                <td>{{ transaction.total_CG_pre_tax_percent | filter_percentage }}</td>
+                                <td>{{ transaction.STCG_tax | filter_usd }}</td>
+                                <td>{{ transaction.LTCG_tax | filter_usd }}</td>
+                                <td>{{ transaction.total_CG_tax | filter_usd }}</td>
+                                <td>{{ transaction.STCG_post_tax | filter_usd }}</td>
+                                <td>{{ transaction.LTCG_post_tax | filter_usd }}</td>
+                                <td>{{ transaction.total_CG_post_tax | filter_usd }}</td>
+                                <td>{{ transaction.total_CG_post_tax_percent | filter_percentage }}</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <p>No history records found.</p>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
