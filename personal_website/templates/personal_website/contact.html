@@ -18,6 +18,13 @@
                     <form method='post'>
                         {% csrf_token %}
                         {{ form.non_field_errors }}
+
+                        <!-- Add debug statements to check context values -->
+                        {% if form.errors %}
+                            <div class="error">Form has errors</div>
+                            {{ form.errors }}
+                        {% endif %}
+
                         
                         <!-- name -->
                         <div class="mb-3">
@@ -40,7 +47,6 @@
                             {% endif %}
                         </div>
                         <!-- /email -->
-                        
                         
                         <!-- phone (country code and Number) -->
                         <div class="mb-3 row">

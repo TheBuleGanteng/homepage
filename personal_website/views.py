@@ -1,5 +1,6 @@
 import base64
 from django.contrib import messages
+from django.core.cache import cache
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
@@ -11,7 +12,8 @@ from googleapiclient.discovery import build
 from email.mime.text import MIMEText
 import os
 import xml.etree.ElementTree as ET
-
+import phonenumbers
+from phonenumbers import geocoder
 
 
 # Configures logger
@@ -32,51 +34,72 @@ def csp_violation_report(request):
 
 # View to that performs an HTTP request to the substack API. Used to bypass CORS issues.
 def fetch_substack_rss(request):
-    print(f'running fetch_substack_rss() ... function started')
     logger.debug(f'running fetch_substack_rss() ... function started')
     
-    # Target URL to fetch from Substack API
-    target_url = 'https://matthewmcdonnell.substack.com/feed'
-    print(f'running fetch_substack_rss() ... target_url is: { target_url }')
-    logger.debug(f'running fetch_substack_rss() ... target_url is: { target_url }')
-    response = requests.get(target_url)
     
-    # If there is an ok response from the RSS feed url, do the following...
-    if response.status_code == 200:
-        # Namespaces are required to correctly parse elements like dc:creator
-        namespaces = {
-            'dc': 'http://purl.org/dc/elements/1.1/'
-        }
+    #  Static cache key for the RSS feed.
+    cache_key = 'substack_rss_feed'
+    cached_data = cache.get(cache_key)
+    
+    if cached_data:
+        logger.debug('Serving from cache')
+        return JsonResponse({'articles': cached_data})
 
-        root = ET.fromstring(response.content)
-        items = root.findall('.//item')
 
-        # Forward the request to the Substack API
-        number_of_articles = 3
+    # If not in cache, fetch the data
+    target_url = 'https://matthewmcdonnell.substack.com/feed'
+    logger.debug(f'running fetch_substack_rss() ... target_url is: { target_url }')
+    
+    try:
+        response = requests.get(target_url)
+    
+        # If there is an ok response from the RSS feed url, do the following...
+        if response.status_code == 200:
+            logger.debug(f'running fetch_substack_rss() ... response from target url was: { response.status_code }')
 
-        articles = []
-        for item in items[:number_of_articles]:  # Limiting to the first 3 articles
-            title = item.find('title').text
-            description = item.find('description').text
-            link = item.find('link').text
-            pubDate = item.find('pubDate').text
-            # Extracting author name using the namespace dictionary
-            author = item.find('dc:creator', namespaces).text if item.find('dc:creator', namespaces) is not None else "Unknown"
-            enclosure = item.find('enclosure')
-            image = enclosure.get('url') if enclosure is not None else None
+            # Namespaces are required to correctly parse elements like dc:creator
+            namespaces = {
+                'dc': 'http://purl.org/dc/elements/1.1/'
+            }
 
-            articles.append({
-                'title': title,
-                'description': description,
-                'link': link,
-                'pubDate': pubDate,
-                'author': author,  # Author name extracted from dc:creator
-                'image': image,
-            })
-            
-        return JsonResponse({'articles': articles})
-    else:
-        return JsonResponse({'error': 'Failed to fetch RSS feed'}, status=500)
+            root = ET.fromstring(response.content)
+            items = root.findall('.//item')
+
+            # Forward the request to the Substack API
+            number_of_articles = 3
+
+            articles = []
+            for item in items[:number_of_articles]:  # Limiting to the first 3 articles
+                title = item.find('title').text
+                description = item.find('description').text
+                link = item.find('link').text
+                pubDate = item.find('pubDate').text
+                # Extracting author name using the namespace dictionary
+                author = item.find('dc:creator', namespaces).text if item.find('dc:creator', namespaces) is not None else "Unknown"
+                enclosure = item.find('enclosure')
+                image = enclosure.get('url') if enclosure is not None else None
+
+                articles.append({
+                    'title': title,
+                    'description': description,
+                    'link': link,
+                    'pubDate': pubDate,
+                    'author': author,  # Author name extracted from dc:creator
+                    'image': image,
+                })
+                
+            # Cache the data for future requests
+            cache.set(cache_key, articles, timeout=300)  # Cache for 5 minutes
+            logger.debug('Data fetched and cached')
+            return JsonResponse({'articles': articles})
+
+        # If the substack RSS does not return 200    
+        else:
+            logger.error('Failed to fetch RSS feed')
+            return JsonResponse({'error': 'Failed to fetch RSS feed'}, status=500)
+
+    except requests.RequestException as e:
+        return JsonResponse({'error': str(e)}, status=500)
 
 # Readiness check (needed for serving via GCP)
 def readiness_check(request):
@@ -101,7 +124,7 @@ def readiness_check(request):
 
 
 # Create your views here.
-def index(request):
+def index_view(request):
     logger.debug(f'starting index() ... ')
     logger.debug(f'ending index() ... ')
     return render(request, 'personal_website/index.html')
@@ -109,7 +132,7 @@ def index(request):
 
 #---------------------------------------------------------------------------
 
-def contact(request):
+def contact_view(request):
     print(f'running contact() ... starting view')
     logger.info(f'running contact() ... starting view')
 
@@ -126,21 +149,26 @@ def contact(request):
         
         # Handle if method = post + form is valid
         if form.is_valid():
-            print(f'running contact() ... method is POST and form passes validation')
             logger.info(f'running contact() ... method is POST and form passes validation')
 
             try:
+                # Take in data from form
                 name = request.POST['name']
-                print(f'running contact() ... name is { name }')
-                logger.info(f'running contact() ... method is POST and form passes validation')
-
                 email = request.POST['email']
-                sender = os.getenv('EMAIL_ADDRESS_INFO')
-                print(f'running contact() ... sender is: {sender}')
-                recipient = os.getenv('EMAIL_ADDRESS_INFO')
-                country_code = get_country_code(request.POST['phone_0']) 
-                phone = country_code+' '+request.POST['phone_1'] or None
+                phone = request.POST['phone']
                 body = request.POST['body']
+                logger.debug(f'running contact() ... name is { name }')
+                logger.debug(f'running contact() ... email is { email }')
+                logger.debug(f'running contact() ... phone is { phone }')
+                logger.debug(f'running contact() ... body is { body }')
+
+                # Pull in data from .env
+                sender = os.getenv('EMAIL_ADDRESS_INFO')
+                recipient = os.getenv('EMAIL_ADDRESS_INFO')
+                logger.debug(f'running contact() ... sender is { sender }')
+                logger.debug(f'running contact() ... recipient is { recipient }')
+                
+                # Populate the required fields for send_email()
                 subject = 'New mattmcdonnell.net contact form submission'
                 attachments = None
                 body = f'''Sender name: { name }
@@ -166,6 +194,7 @@ Thank you,
         
         # Handle if method = post BUT form is invalid
         else:
+            logger.error(f'running contact() ... form is invalid. Errors: {form.errors}')
             messages.error(request, 'Please correct the errors below and try again.')
             return render(request, 
             'personal_website/contact.html', 
@@ -179,9 +208,9 @@ Thank you,
         return render(request, 'personal_website/contact.html', {'form': form})
     
 
-def returnkey(request):
+def returnkey_view(request):
     return render(request, 'personal_website/returnkey.html')
 
 
-def tokobox(request):
+def tokobox_view(request):
     return render(request, 'personal_website/tokobox.html')

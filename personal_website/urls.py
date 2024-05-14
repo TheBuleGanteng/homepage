@@ -7,10 +7,10 @@ from .views import fetch_substack_rss
 app_name = 'personal_website'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('contact', views.contact, name='contact'),
+    path('', views.index_view, name='index'),
+    path('contact/', views.contact_view, name='contact'),
     #path('csp/', include('csp.urls', namespace='csp')),
-    path('returnkey', views.returnkey, name='returnkey'),
-    path('fetch-substack-rss', fetch_substack_rss, name='fetch_substack_rss'),
-    path('tokobox', views.tokobox, name='tokobox'),
+    path('returnkey/', views.returnkey_view, name='returnkey'),
+    path('fetch-substack-rss/', fetch_substack_rss, name='fetch-substack-rss'),
+    path('tokobox/', views.tokobox_view, name='tokobox'),
 ]

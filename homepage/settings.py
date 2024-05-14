@@ -36,6 +36,10 @@ TOKEN_TIMEOUT = int(os.getenv('TOKEN_TIMEOUT')) # Sets the expiration of a uniqu
 SESSION_COOKIE_AGE = int(os.getenv('SESSION_COOKIE_AGE'))
 SESSION_EXPIRE_AT_BROWSER_CLOSE = os.getenv('SESSION_EXPIRE_AT_BROWSER_CLOSE')
 SESSION_SAVE_EVERY_REQUEST = os.getenv('SESSION_SAVE_EVERY_REQUEST')
+PHONENUMBER_DEFAULT_REGION = 'ID'
+PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
+
+
 
 # Important security-related settings
 CSRF_COOKIE_SECURE=True # Must = True for deployment. Sends CSRF cookies only over HTTPS
@@ -81,6 +85,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     # Third party apps 
+    'phonenumber_field',
     'widget_tweaks',
 ]
 
@@ -169,6 +174,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'shared_static'), # Ensures that the contents of shared_static/ are also collected when running 'manage.py collectstatic'
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -180,7 +188,7 @@ CSP_DEFAULTS = {
 "default-src": ["'self'", "https://127.0.0.1:8000", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://www.googletagmanager.com", "https://www.google-analytics.com"],
     "script-src": ["'self'", "https://127.0.0.1:8000", 'https://ajax.googleapis.com', "https://cdn.jsdelivr.net", "https://code.jquery.com/", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://cdn.jsdelivr.net", "https://substackapi.com", "{nonce}"],
     "style-src": ["'self'", "https://127.0.0.1:8000", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://stackpath.bootstrapcdn.com"],
-    "img-src": ["'self'", "data:", "https://127.0.0.1:8000", "https://financialmodelingprep.com/", "https://images.unsplash.com", "https://substackcdn.com"],
+    "img-src": ["'self'", "data:", "https://127.0.0.1:8000", "https://financialmodelingprep.com/", "https://www.googletagmanager.com", "https://images.unsplash.com", "https://substackcdn.com"],
     "frame-src": ["'self'", "https://www.youtube.com"],
     "connect-src": ["'self'", "https://substackapi.com", "https://www.google-analytics.com"],
     "form-action": ["'self'", "https://127.0.0.1:8000"],

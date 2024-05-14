@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils.safestring import mark_safe
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.phonenumber import to_python
 import re
@@ -106,5 +107,3 @@ class CharFieldRegexPhone(PhoneNumberField):
         regex_phone(phone_number_str, allowed_input_letters_lower, allowed_input_letters_upper, 
         allowed_input_numbers, allowed_input_symbols_phone)
         return super().clean(value)
-
-

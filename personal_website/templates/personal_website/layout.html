@@ -116,8 +116,10 @@
         {% block main %}
         
             <!-- script that can be included on a page via use of '{{ block.super }}'-->
-            <script  src='{% static "personal_website/javascript/substackFeed.js" %}'></script>
-            <script  src='{% static "personal_website/javascript/typewriterEffect.js" %}'></script>
+            {% if request.path == '/' %}
+                <script  src='{% static "personal_website/javascript/substackFeed.js" %}'></script>
+                <script  src='{% static "personal_website/javascript/typewriterEffect.js" %}'></script>
+            {% endif %}
             <!-- /script that can be included on a page via use of '{{ block.super }}'-->        
         {% endblock %}
         <!-- /main -->

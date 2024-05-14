@@ -3,5 +3,8 @@ gitignored/
 homepage-venv/
 scripts/
 logs/
+supervisor/
+staticfiles/
 *__pycache__*
 .env
+*tests.py*

@@ -1,7 +1,7 @@
 from .custom_fields import CharFieldRegexPhone, CharFieldRegexStrict, CharFieldTitleCaseRegexStrict, EmailFieldLowerRegexStrict
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
-from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
 
 class ContactForm(forms.Form):
     name = CharFieldTitleCaseRegexStrict(
@@ -17,9 +17,11 @@ class ContactForm(forms.Form):
         widget=forms.EmailInput(attrs={'placeholder': 'emailaddress@example.com',
         'class': 'form-control'}))
     
-    phone = CharFieldRegexPhone(
-        label='WhatsApp number:',
-        widget=PhoneNumberPrefixWidget(attrs={'class': 'form-control'}, initial='ID'))
+    
+    phone = PhoneNumberField(
+        label='Phone number, inc. country code:',
+        widget=forms.TextInput(attrs={'placeholder': '+62 8XXXXXXXXXX', 'class': 'form-control'})
+    )
 
     
     body = CharFieldRegexStrict(
