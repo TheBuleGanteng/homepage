@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Use .env file to set project environment, with 'dev' as the fallback
 SECRET_KEY = os.getenv('SECRET_KEY')
 PROJECT_ENV = os.getenv('ENVIRONMENT', 'development')
-ALLOWED_HOSTS = ['127.0.0.1', '35.188.73.206', 'localhost', 'www.mattmcdonnell.net', 'mattmcdonnell.net',] # Must update prior to prod
+ALLOWED_HOSTS = ['127.0.0.1', '34.173.7.164', 'localhost', 'www.mattmcdonnell.net', 'mattmcdonnell.net',] # Must update prior to prod
 TOKEN_TIMEOUT = int(os.getenv('TOKEN_TIMEOUT')) # Sets the expiration of a unique token generated via Django's PasswordResetTokenGenerator
 SESSION_COOKIE_AGE = int(os.getenv('SESSION_COOKIE_AGE'))
 SESSION_EXPIRE_AT_BROWSER_CLOSE = os.getenv('SESSION_EXPIRE_AT_BROWSER_CLOSE')
