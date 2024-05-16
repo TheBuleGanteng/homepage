@@ -212,5 +212,8 @@ def returnkey_view(request):
     return render(request, 'personal_website/returnkey.html')
 
 
+def sitemap_view(request):
+    return render(request, 'personal_website/sitemap.html')
+
 def tokobox_view(request):
     return render(request, 'personal_website/tokobox.html')

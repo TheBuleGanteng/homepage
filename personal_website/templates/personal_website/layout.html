@@ -58,7 +58,7 @@
                                 Portfolio
                             </a>
                             <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                                <li><a class='dropdown-item' href='https://apps-cs50finance.as.r.appspot.com/'>MyFinance50</a></li>
+                                <li><a class='dropdown-item' href='{% url "brokerage:index" %}' target='_blank'>MyFinance50</a></li>
                                 <!--
                                 <li><a class='dropdown-item' href='#'>SavorScript</a></li>
                                 <li><hr class='dropdown-divider'></li>
@@ -84,11 +84,11 @@
                     <ul class="navbar-nav ms-auto p-0">
                         <!-- right-aligned collapsing navbar content -->
                         <div class='ms-auto'>
-                            <a href='https://www.linkedin.com/in/matthewjmcdonnell/'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_linkedin.png" %}'  target='_blank' alt='LinkedIn logo'></a>
-                            <a href='https://github.com/TheBuleGanteng'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_github.png" %}'  target='_blank' alt='GitHub logo'></a>
-                            <a href='https://www.duolingo.com/profile/TheBuleGanteng'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_duolingo.png" %}' target='_blank' alt='Duolingo logo'></a>
-                            <a href='https://matthewmcdonnell.substack.com/'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_substack.png" %}' target='_blank' alt='Substack logo'></a>
-                            <a href='https://twitter.com/mattjmcdonnell'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_twitter.png" %}' target='_blank' alt='Twitter logo'></a>
+                            <a href='https://www.linkedin.com/in/matthewjmcdonnell/' target='_blank'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_linkedin.png" %}'  target='_blank' alt='LinkedIn logo'></a>
+                            <a href='https://github.com/TheBuleGanteng' target='_blank'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_github.png" %}'  target='_blank' alt='GitHub logo'></a>
+                            <a href='https://www.duolingo.com/profile/TheBuleGanteng' target='_blank'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_duolingo.png" %}' target='_blank' alt='Duolingo logo'></a>
+                            <a href='https://matthewmcdonnell.substack.com/' target='_blank'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_substack.png" %}' target='_blank' alt='Substack logo'></a>
+                            <a href='https://twitter.com/mattjmcdonnell' target='_blank'> <img class='navbar-fixed-height-logo' src='{% static "personal_website/assets/logo_twitter.png" %}' target='_blank' alt='Twitter logo'></a>
                         </div>
                         <!-- right-aligned collapsing navbar content -->
                         
@@ -131,7 +131,7 @@
                     <h6>Matthew McDonnell, CFA - 2024</h6>
                 </div>
                 <div class='col ms-auto text-end'>
-                    <a href='/sitemap' class='sitemap-link'>Site Map</a>
+                    <a href='{% url "personal_website:sitemap" %}' class='sitemap-link'>Site Map</a>
                     <a id='contact-link-footer' href='{% url "personal_website:contact" %}'>Contact</a>
                 </div>
             </div>

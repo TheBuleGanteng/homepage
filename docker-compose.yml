@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile.django
     volumes:
       - .:/app
-      - ./gitignored:/etc/nginx/certs # Mounts the gitignored directory to /certs inside the container
+      - ./gitignored:/etc/nginx/certs # Ensure SSL certs are accessible
       - static_volume:/app/staticfiles
       - media_volume:/app/media
       - ./logs:/app/logs # Added in logging setup

@@ -7,5 +7,7 @@ supervisor/
 staticfiles/
 *__pycache__*
 .env
+.pem
+.key
 *tests.py*
 *tar.gz

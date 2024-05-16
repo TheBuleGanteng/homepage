@@ -1,8 +1,11 @@
-# Use the official Nginx image as a parent image
+# Dockerfile.nginx
 FROM nginx:latest
+WORKDIR /app
 
 # Remove the default Nginx configuration file
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy the custom configuration file from your project
+# Copy Nginx config
 COPY nginx.conf /etc/nginx/conf.d/
+
+CMD ["nginx", "-g", "daemon off;"]

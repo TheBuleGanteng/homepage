@@ -12,5 +12,6 @@ urlpatterns = [
     #path('csp/', include('csp.urls', namespace='csp')),
     path('returnkey/', views.returnkey_view, name='returnkey'),
     path('fetch-substack-rss/', fetch_substack_rss, name='fetch-substack-rss'),
+    path('sitemap/', views.sitemap_view, name='sitemap'),
     path('tokobox/', views.tokobox_view, name='tokobox'),
 ]
