@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.views.generic import TemplateView
 from .forms.forms import ContactForm
 from .helpers import configure_logging, datetime, dnr_email_address, PROJECT_NAME, get_country_code, info_email_address, logging, os, Path, requests, send_email
 from google.oauth2 import service_account
@@ -211,6 +212,8 @@ Thank you,
 def returnkey_view(request):
     return render(request, 'personal_website/returnkey.html')
 
+def robots_view(request):
+    return render(request, 'personal_website/robots.txt', content_type='text/plain')
 
 def sitemap_view(request):
     return render(request, 'personal_website/sitemap.html')
