@@ -101,14 +101,21 @@ def buy_view(request):
     # Display the BuyForm
     form = BuyForm(request.POST or None) # This will handle both POST and initial GET
 
-    if request.method == 'POST':
-        logger.debug('running brokerage app, buy_view ... user submitted via POST')
+    # Pull the symbol from the url, if there is one
+    url_symbol = request.GET.get('symbol' or None)
+    logger.debug(f'running buy_view ... url_symbol is: { url_symbol }')
 
-        if form.is_valid():
+    # Pre-populate the form with the symbol from the URL if it exists
+    initial_data = {'symbol': url_symbol} if url_symbol else {}
+    form = BuyForm(request.POST or None, initial=initial_data)
+    
+    if request.method == 'POST':
+        
+        if form.is_valid() or url_symbol:
             logger.debug('running brokerage app, buy_view ... user submitted via POST and form passed validation')
         
             # Assigns to variables the username and password passed in via the form in login.html
-            symbol = form.cleaned_data['symbol']
+            symbol = form.cleaned_data['symbol'] or url_symbol
             shares = form.cleaned_data['shares']
             print(f'running buy_view ... symbol is: { symbol }')
             print(f'running buy_view ... shares is: { shares }')
@@ -440,12 +447,20 @@ def sell_view(request):
     logger.debug(f'running sell_view ... user is { user }, symbols_query is { symbols_query }, symbols is: { symbols }')
     form = SellForm(request.POST or None, symbols=symbols)  # Form is instantiated here for both GET and POST
 
+    # Pull the symbol from the url, if there is one
+    url_symbol = request.GET.get('symbol' or None)
+    logger.debug(f'running sell_view ... url_symbol is: { url_symbol }')
+
+    # Pre-populate the form with the symbol from the URL if it exists
+    initial_data = {'symbol': url_symbol} if url_symbol else {}
+    form = SellForm(request.POST or None, symbols=symbols, initial=initial_data)
+
     if request.method == 'POST':
     
         if form.is_valid():
             
-            # Assigns to variables the username and password passed in via the form in login.html
-            symbol = form.cleaned_data['symbol']
+            # Pull the symbol from either the form or the url
+            symbol = form.cleaned_data['symbol'] or url_symbol
             shares = form.cleaned_data['shares']
             transaction_type = 'SLD'
             logger.debug(f'running sell_view ... user is: { user } and symbol is: { symbol }')

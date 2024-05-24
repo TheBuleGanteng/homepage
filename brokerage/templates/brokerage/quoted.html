@@ -55,12 +55,15 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- buy and sell buttons -->
             <div class='col col-lg-2 col-3'>
                 <div class='row content-start'>
                     <div>
                         <!-- conditional: if user has shares in stock show enabled "sell" button, otherwise, show disabled "sell" button -->
                         {% if company_profile.can_sell %}
                         <form action="{% url 'brokerage:sell' %}" method="get" class="d-inline">
+                            <input type="hidden" name="symbol" value="{{ company_profile.symbol }}">
                             <button type="submit" class="btn btn-success w-100 mb-1 p-0">Sell {{ company_profile.symbol }}</button>
                         </form>
                         {% else %}
@@ -73,6 +76,7 @@
                         <!-- conditional: if user has cash > price per share enable buy button. Otherwise, disable buy button. -->
                         {% if company_profile.can_buy %}
                             <form action="{% url 'brokerage:buy' %}" method="get" class="d-inline">
+                                <input type="hidden" name="symbol" value="{{ company_profile.symbol }}">
                                 <button type="submit" class="btn btn-success w-100 mb-1 p-0">Buy {{ company_profile.symbol }}</button>
                             </form>
                         {% else %}
@@ -84,8 +88,10 @@
                     </div>
                 </div>
             </div>
-            <!-- /company name, symbol, and price change -->
+            <!-- /buy and sell buttons -->
+
         </div>
+        <!-- /company name, symbol, and price change -->
 
         <!-- accordion for company profile -->
         <div class='row mb-1'>

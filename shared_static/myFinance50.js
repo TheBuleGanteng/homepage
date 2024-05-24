@@ -341,6 +341,11 @@ document.addEventListener('DOMContentLoaded', function() {
             symbol.addEventListener('keyup', debounce(debouncedSymbolLiveSearch, 300))
             symbol.addEventListener('change', debounce(debouncedSymbolValidation, 300))
         }
+
+        if (symbol.value) {
+            var event = new Event('change');
+            symbol.dispatchEvent(event);
+        }
         
         if (shares) {
             shares.addEventListener('keyup', debounce(debouncedSharesValidation, 100)); // Using the same timeout for consistency
