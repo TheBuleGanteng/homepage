@@ -75,6 +75,9 @@ class Portfolio:
     def get_symbol_data(self, symbol):
         return self.portfolio_data.get(symbol, None)
 
+    def __str__(self):
+        return f'Portfolio(cash={self.cash}, portfolio_data={self.portfolio_data})'
+
 #----------------------------------------------------------------------------------------
 
 # Creates an item of the portfolio class and populates it

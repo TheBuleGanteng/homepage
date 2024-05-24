@@ -153,7 +153,7 @@ def check_valid_shares(shares, symbol, transaction_type, user):
             # Purchase proceeds
             else:
                 response['success'] = True
-                response['message'] = f'User cash of { user_cash_reformatted } is sufficient to cover proposed purchase cost of { transaction_value_total_reformatted }'
+                response['message'] = f'Your current cash balance of { user_cash_reformatted } is sufficient to cover the total purchase cost of { transaction_value_total_reformatted } ( { shares } share(s) x { reformat_usd(transaction_value_per_share) } per share )'
                 response['data'] = {
                     'transaction_value_per_share': transaction_value_per_share,
                     'transaction_value_total': transaction_value_total

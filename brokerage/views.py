@@ -25,8 +25,6 @@ from users.models import UserProfile
 
 logger = logging.getLogger('django')
 
-
-
 #-------------------------------------------------------------------------------
 
 @login_required(login_url='users:login')
@@ -34,7 +32,9 @@ logger = logging.getLogger('django')
 def index_view(request):
     logger.debug('running brokerage app, index ... view started')
 
-    
+    # Log session key for debugging
+    logger.debug(f'Session key in index_view: {request.session.session_key}')
+
     # Retrieve the user object for the logged-in user
     user = request.user
     cache_key = f'portfolio_{user.pk}'  # Unique key for each user
@@ -336,23 +336,67 @@ def history_view(request):
 def quote_view(request):
     logger.debug('running brokerage app, quote_view ... view started')
 
-    symbol = request.GET.get('symbol' or None)
+    url_symbol = request.GET.get('symbol' or None)
 
-    if request.method == 'POST' or symbol:
+    if request.method == 'POST' or url_symbol:
         
         # Display the QuoteForm
         form = QuoteForm(request.POST or None) # This will handle both POST and initial GET
 
         # If user submits QuoteForm or there is a symbol in the url
-        if form.is_valid() or symbol:
+        if form.is_valid() or url_symbol:
             logger.debug('running brokerage app, quote_view ... user submitted via POST and form passed validation')
         
-            # Assigns to variables the username and password passed in via the form in login.html
-            symbol = symbol or form.cleaned_data['symbol']
-            company_profile = company_data(symbol)
-            logger.debug(f'running brokerage app, quote_view ... quote requested for symbol: {symbol}')
-            print(f'(printed) running brokerage app, quote_view ... quote requested for symbol: {symbol}')
+            # Pull in the queried_symbol via either the url or submission of the form
+            queried_symbol = url_symbol or form.cleaned_data['symbol']
+            
+            # Hit the FMP API to pull the company profile pertaining to queried_symbol
+            company_profile = company_data(queried_symbol)
+            logger.debug(f'running brokerage app, quote_view ... quote requested for symbol: { queried_symbol }')
+            
+            # Retrieve the user object (will return AnonymousUser if user is not logged in)
+            user = request.user
+            logger.debug(f'running brokerage app, quote_view ... user is: { user }')
 
+            # If the user is logged in, pull the portfolio object for this user
+            if user != 'AnonymousUser':
+                cache_key = f'portfolio_{user.pk}'  # Unique key for each user
+                portfolio = cache.get(cache_key)
+
+                # If there is no cached portfolio for the logged-in user, re-create the portfolio object and cache it
+                if not portfolio:
+                    portfolio = process_user_transactions(user)
+                    
+                    cache.set(cache_key, portfolio, timeout=300)  # Cache the data for 5 minutes (300 seconds)
+                logger.debug(f'running / ... for user {user} ... portfolio is: { portfolio }')
+                
+                # Sell button check: Look in the portfolio to see if it contains queried_symbol
+                for symbol in portfolio.portfolio_data:
+
+                    # Access the data for the current symbol in the loop of the symbols in the portfolio
+                    symbol_data = portfolio.portfolio_data[symbol]
+
+                    # If the portfolio contains shares outstanding of queried_symbol, user can sell
+                    if symbol == queried_symbol and symbol_data['shares_outstanding'] > 0:
+                        company_profile['can_sell'] = True
+                        break
+                    else:
+                        company_profile['can_sell'] = False
+                    logger.debug(f'running / ... for user {user} ... company_profile[can_sell] is: { company_profile["can_sell"] }')    
+                
+                # Buy button check: If the portfolio contains cash > the per share price of queried_symbol, user can buy
+                if user.userprofile.cash > company_profile['price']:
+                    company_profile['can_buy'] = True
+                else:
+                    company_profile['can_buy'] = False
+                logger.debug(f'running / ... for user {user} ... company_profile[can_buy] is: { company_profile["can_buy"] }')
+
+            # If the user is not logged in, user cannot buy or sell
+            else:
+                company_profile['can_sell'] = False
+                company_profile['can_buy'] = False
+
+        
             # Some additional calculations displayed in in the html
             company_profile['changes_percent'] = reformat_number_two_decimals(company_profile['changes'] / (company_profile['price'] - company_profile['changes']) )
             company_profile['changes_percent_negative'] = company_profile['changes_percent'] + '%'
@@ -363,7 +407,7 @@ def quote_view(request):
             company_profile['range_reformatted'] = f"${min_val} - ${max_val}"
 
             # Render a template with the company data
-            return render(request, 'brokerage/quoted.html', {'company_profile': company_profile, 'symbol': symbol})
+            return render(request, 'brokerage/quoted.html', {'company_profile': company_profile, 'symbol': queried_symbol})
 
         # If QuoteForm fails validation
         else:

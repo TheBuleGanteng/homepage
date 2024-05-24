@@ -3,13 +3,13 @@ import base64
 from django import forms
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, get_backends, login, logout
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -335,7 +335,11 @@ def login_view(request):
                 login(request, user)
                 logger.debug('running users app login_view ... user logged in, reversing to index')
                 messages.success(request, f'Welcome { user.get_username() }, you are now logged in to { PROJECT_NAME }.')
-                return HttpResponseRedirect(reverse('brokerage:index'))
+                
+                # Add debug information for session keys
+                logger.debug(f'Session key after login in register_confirmation_view: {request.session.session_key}')
+                
+                return redirect('brokerage:index')
         
             # If user is registered and not yet confirmed, display a message and redirect to login.
             elif user and user.userprofile.confirmed == False:
@@ -544,9 +548,9 @@ Team {PROJECT_NAME}'''
         else:
             logger.debug(f'running users app, password_reset_view ... Error: form validation errors, flashing message and redirecting user to /password_reset')    
             for field, errors in form.errors.items():
-                logger.debug(f'running users app, register_view ... erroring field is: { field }')
+                logger.debug(f'running users app, password_reset_view ... erroring field is: { field }')
                 for error in errors:
-                    logger.debug(f'running users app, register_view ... erroring on this field is: {error}')
+                    logger.debug(f'running users app, password_reset_view ... erroring on this field is: {error}')
             messages.error(request, 'Error: Invalid input. Please see the red text below for assistance.')
             return render(request, "users/password-reset.html", {'form': form})
             
@@ -791,8 +795,18 @@ Team {PROJECT_NAME}'''
                 # Step 2.1.1.5: Send email.
                 send_email(body=body, recipient=recipient, sender=sender, subject=subject)
                 #logger.debug(f'running users app, register_view ... reset email sent to email address: { user.email }.')
+                
+                response = HttpResponseRedirect(reverse('users:login'))
+                logger.debug(f'running users app, register_view ... response is: { response }')
+
+                cookie_token = generate_unique_token(user)
+                logger.debug(f'running users app, register_view ... cookie_token is: { cookie_token }')
+                
+                response.set_cookie(key='registration_id', value=cookie_token, max_age=3600, secure=True, httponly=True)
+                logger.debug(f'running users app, register_view ... set registration_id equal to cookie_token. All cookies now: { request.COOKIES }')
+                
                 messages.success(request, 'Thank you for registering. Please check your email inbox and spam folders for an email containing your confirmation link.')
-                return redirect('users:login')
+                return response
 
             # Step 2.1.2: If sending email fails, flash error message and return to register
             except Exception as e:
@@ -841,21 +855,47 @@ def register_confirmation_view(request):
             messages.error(request, 'Error: If you have already confirmed your account, please log in. Otherwise please re-register your account to get a new confirmation link via email.')    
             return redirect('users:login')
 
+        # Step 3: If the user associated with the token does not exist in the DB, flash message and redirect to register.
         user_profile = UserProfile.objects.filter(user=user).first()
-        
-        # If the user associated with the token does not exist, flash message and redirect to register.
         if not user_profile:
             logger.error(f"No UserProfile found for user: { user }")
             messages.error(request, "Error: User profile not found.")
             return redirect('users:register')
-        
-        # Step 4: If user,confirmed = false, change to true, flash success, and redirect to login.
+    
+        # Step 4: If user.confirmed = false, change to true.
         if not user_profile.confirmed:
             user_profile.confirmed = True
             user_profile.save()
-            logger.debug(f'running /register_confirmation ... updated user: { user } to confirmed. Redirecting to user:login.')
-            messages.success(request, f'Your registration is confirmed. Welcome to { PROJECT_NAME }! Please log into your account to begin.')
-            return redirect('users:login')
+            logger.debug(f'running /register_confirmation ... updated user: { user } to confirmed.')
+            
+            # Log the current URL
+            current_url = request.build_absolute_uri()
+            logger.debug(f'running users app, register_confirmation_view ... current URL is: {current_url}')
+            logger.debug(f'running users app, register_confirmation_view ... All cookies now: { request.COOKIES }')
+
+            # Step 5: Check for the presence of a cookie.  If present, authenticate user and direct to index. If not present, force user to log in.
+            registration_id = request.COOKIES.get('registration_id')
+            logger.debug(f'running /register_confirmation ... registration_id from cookie is: {registration_id}. All cookies are: { request.COOKIES }  ')
+            
+            if not registration_id: 
+                logger.debug(f'running /register_confirmation ... updated user: { user } to confirmed. Since cookie is not present, redirecting to users:login.')
+                messages.error(request, "Congratulations, your account is confirmed. Please log in.")
+                return redirect('users:login')
+            else:
+                logger.debug(f'running /register_confirmation ... updated user: { user } to confirmed. Since cookie is present, redirecting to brokerage:index.')
+                messages.success(request, f'Congratulations, your account is confirmed. Welcome to { PROJECT_NAME } ')
+                
+                # Log in the user with the correct backend
+                backend = 'homepage.authentication_backend.EmailAuthBackend'
+                logger.debug(f'running /register_confirmation ... backend is: { backend }')
+                
+                user.backend = backend
+                logger.debug(f'running /register_confirmation ... user.backend is: { user.backend }')
+
+                login(request, user, backend=backend)
+                logger.debug(f'running /register_confirmation ... user: { user } is logged in.')
+                return redirect('brokerage:index')
+
         # If user + confirmed = true, flash error message and redirect to login. Note: this should not be possible since token is one-time-use.
         else:
             logger.debug(f'running /register_confirmation ... Error 4 (user already confirmed). Flashing msg and redirecting to login.')

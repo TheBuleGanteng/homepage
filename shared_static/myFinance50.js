@@ -10,7 +10,20 @@ if (csrfMeta) {
 
 
 // Bootstrap's spinner while loading ---------------------------------------------------
-window.addEventListener('load', function() {
+
+// Function to show the spinner
+function showSpinner() {
+    var spinner = document.getElementById('loadingSpinner');
+    if (spinner) {
+        spinner.classList.remove('d-none'); // Remove Bootstrap's 'd-none' class to show the spinner
+        spinner.classList.add('d-flex');    // Add the flex display class if it's set
+    } else {
+        console.log("Spinner element not found.");
+    }
+}
+
+// Function to hide the spinner
+function hideSpinner() {
     var spinner = document.getElementById('loadingSpinner');
     if (spinner) {
         spinner.classList.remove('d-flex'); // Remove the flex display class if it's set
@@ -18,7 +31,55 @@ window.addEventListener('load', function() {
     } else {
         console.log("Spinner element not found.");
     }
+}
+
+// Hide spinner on initial page load
+window.addEventListener('load', hideSpinner);
+
+// Hide spinner on page show (including bfcache restore)
+window.addEventListener('pageshow', function(event) {
+    hideSpinner();
 });
+
+// Show spinner on form submit
+document.addEventListener('submit', function(event) {
+    if (event.target.tagName.toLowerCase() === 'form') {
+        showSpinner();
+    }
+});
+
+// Show spinner on link click
+document.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() === 'a') {
+        showSpinner();
+    }
+});
+
+// Show spinner on window beforeunload
+window.addEventListener('beforeunload', function(event) {
+    showSpinner();
+});
+
+// Show spinner on AJAX start and hide on AJAX complete
+(function() {
+    var open = XMLHttpRequest.prototype.open;
+    var send = XMLHttpRequest.prototype.send;
+
+    XMLHttpRequest.prototype.open = function() {
+        this.addEventListener('loadstart', function() {
+            showSpinner();
+        });
+        this.addEventListener('loadend', function() {
+            hideSpinner();
+        });
+        open.apply(this, arguments); // Call the original open method
+    };
+
+    XMLHttpRequest.prototype.send = function() {
+        send.apply(this, arguments); // Call the original send method
+    };
+})();
+
 
 
 // Load DOM before doing all JS below -------------------------------------------------
@@ -59,6 +120,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     };
+
+
+    // Enable Bootstrap5 popovers wherever they appear
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+    }) 
 
 
     // Show timeout modal warning user about upcoming timeout.
@@ -502,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (symbol) {
             symbol.addEventListener('keyup', debounce(debouncedSymbolLiveSearch, 300))
-            symbol.addEventListener('keyup', debounce(debouncedSymbolValidation, 300))
+            symbol.addEventListener('keyup', debouncedSymbolValidation)
             symbol.addEventListener('change', debounce(debouncedSymbolValidation, 300))
         }    
     }
@@ -536,6 +604,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
+        
+        
         function debouncedEmailValidation() {
             submitButton.disabled = true;
             // Immediately disable the submit button when input changes
@@ -543,10 +613,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 jsEnableRegisterSubmitButton();
            });
         }
-
+        
+        /* TEMPORARILY DISABLED
         if (email) {
             email.addEventListener('input', debounce(debouncedEmailValidation, 300));
         }
+        */
              
         function debouncedUsernameValidation() {
             submitButton.disabled = true;
@@ -973,6 +1045,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return new Promise((resolve, reject) => {
             var symbol = document.getElementById('id_symbol');
             var symbol_validation = document.getElementById('symbol_validation');
+            var submitButton = document.getElementById('submit_button');
             var user_input = symbol.value.trim();
             console.log(`Running jsSymbolValidation()... User input: ${user_input}`);
             
@@ -1029,6 +1102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var symbol_validation = document.getElementById('symbol_validation');
             var symbol_live_search = document.getElementById('symbol_live_search');
             var user_input = symbol.value.trim();
+            var submitButton = document.getElementById('submit_button');
             console.log(`Running jsSymbolLiveSearch()`);
     
             if (user_input === '') {
@@ -1069,6 +1143,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                     symbol.value = item.symbol; // Populate the symbol input field with the clicked symbol
                                     symbol_live_search.innerHTML = '';
                                     symbol_live_search.classList.add('d-none');
+                                    var form = symbol.closest('form'); // Select the closest form (e.g. the one containing 'symbol')
+                                    if (form && form.id === 'QuoteForm') { // If that form is QuoteForm, auto-submit. Do not auto-submit if this function is used elsewhere, such as BuyForm. 
+                                        form.submit();
+                                    }
                                 });
                                 symbol_live_search.appendChild(div);
                             });
@@ -1078,7 +1156,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             symbol_live_search.classList.add('d-none');
                         }
                     } else {
-                        console.error('Server error:', data.data);
                         symbol_validation.innerHTML = data.data || 'Invalid symbol';
                         symbol_validation.classList.add('text-taken');
                     }
@@ -1352,6 +1429,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enables submit button on quote page
     function jsEnableQuoteSubmitButton() {
         var submitButton = document.getElementById('submit_button');
+        var form = submitButton.closest('form');
+        var spinner = document.getElementById('loadingSpinner');
         
         // Initially disable submit to ensure button is disabled while promises are in progress
         console.log(`Running jsEnableQuoteSubmitButton() ... `)
@@ -1360,12 +1439,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initially disable submit to prevent premature submissions
         submitButton.disabled = true;
 
-        if (symbolValidationPassed) {
-            console.log('Running jsEnableQuoteSubmitButton() ... enabling submit button.');
-            submitButton.disabled = false;
-        } else {
-            console.log('Running jsEnableQuoteSubmitButton() ... disabling submit button due to failed or incomplete validation.');
-            submitButton.disabled = true;
+        // Check if the spinner is visible. Since the spinner is already listening to all the various loading events, it's easier to just listen for the spinner.
+        var isSpinnerVisible = spinner && !spinner.classList.contains('d-none');
+        console.log(`Running jsEnableQuoteSubmitButton() ... isSpinnerVisible: ${isSpinnerVisible}`);
+
+        if (!isSpinnerVisible) {
+
+            if (symbolValidationPassed) {
+                console.log('Running jsEnableQuoteSubmitButton() ... enabling submit button.');
+                submitButton.disabled = false;
+            } else {
+                console.log('Running jsEnableQuoteSubmitButton() ... disabling submit button due to failed or incomplete validation.');
+                submitButton.disabled = true;
+            }
         }
     }
 
@@ -1382,7 +1468,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create an array of promises with labels
         var labeledPromises = [
             { label: 'Username Validation', promise: jsUsernameValidation() },
+            /* DISABLED TEMPORARILY
             { label: 'Email Validation', promise: jsEmailValidation() },
+            */
             { label: 'Password Check', promise: jsPasswordValidation() },
             { label: 'Password Confirmation Check', promise: jsPasswordConfirmationValidation() }
         ];

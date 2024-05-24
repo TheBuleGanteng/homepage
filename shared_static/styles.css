@@ -48,6 +48,9 @@ nav .navbar-brand .green
   width: 100% !important;
 }
 
+
+
+
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   text-align: center;
   opacity: 1; /* Firefox */
@@ -82,6 +85,13 @@ nav .navbar-brand .green
   margin: 1px;
 }
 
+@media (max-width: 576px) {
+  .quote-changes {
+    font-size: calc(1.0rem + 0.4vw); /* REPLICATES H2 */
+  }
+}
+
+
 .quote-changes-positive {
   color:  var(--bs-green);
 }
@@ -100,6 +110,15 @@ nav .navbar-brand .green
   font-weight: bold;
   margin-left: 10px;
 }
+
+@media (max-width: 576px) {
+  .quote-price {
+    font-size: calc(1.325rem + 0.9vw); /* REPLICATES H2 */
+  }
+}
+
+
+
 
 .quote-logo-small {
   background-color: black;
@@ -7835,7 +7854,7 @@ textarea.form-control-lg {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #edf1fa !important; /* CUSTOMIZATION : was #f8f9fa */
 }
 
 .bg-dark {

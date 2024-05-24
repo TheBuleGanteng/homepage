@@ -46,7 +46,7 @@
                     {% if user.is_authenticated %}
                         <ul class='navbar-nav me-auto mt-2'>
                             <li class='nav-item'><a class='nav-link' href='{% url "brokerage:index" %}'>Home</a></li>
-                            <li class='nav-item'><a class='nav-link' href='{% url "brokerage:quote" %}'>Quote</a></li>
+                            <li class='nav-item'><a class='nav-link' href='{% url "brokerage:quote" %}'>Research</a></li>
                             <li class='nav-item'><a class='nav-link' href='{% url "brokerage:buy" %}'>Buy</a></li>
                             <li class='nav-item'><a class='nav-link' href='{% url "brokerage:sell" %}'>Sell</a></li>
                             <li class='nav-item'><a class='nav-link' href='{% url "brokerage:history" %}'>History</a></li>
@@ -108,7 +108,7 @@
         {% block main %}{% endblock %}
         
         
-        <footer class='footer mt-auto py-3 bg-light sticky-footer'>
+        <footer class='footer mt-auto py-3 bg-light border-top border-dark-subtle sticky-footer'>
             <div class='container'>
                 <span class='text-muted'>Market data provided by <a href='https://site.financialmodelingprep.com/developer/docs'>FMP</a></span>
             </div>

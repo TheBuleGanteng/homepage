@@ -43,10 +43,11 @@ PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
 
 # Important security-related settings
 CSRF_COOKIE_SECURE=True # Must = True for deployment. Sends CSRF cookies only over HTTPS
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY=True  # Must = True for deployment. Prevents client-side JavaScript from accessing the session cookie
 CSRF_COOKIE_SAMESITE = 'Strict'  # 'Strict' is also an option but can interfere with some third-party integrations
-SESSION_COOKIE_SAMESITE = 'Strict'  # 'Strict' is also an option but can interfere with some third-party integrations
+SESSION_COOKIE_SAMESITE = 'Lax'  # 'Strict' is also an option but can interfere with some third-party integrations
+#SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 CSRF_COOKIE_HTTPONLY = True  # Ensures CSRF cookies are HttpOnly, if you need to access CSRF token in JavaScript, keep it False
 SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDED_PROTO', 'https')
 X_FRAME_OPTIONS = 'DENY' # Must = True for deployment. Prevents framing of the site, equivalent to "frame-ancestors": ["'none'"] in CSP. Can also use 'SELF'
@@ -274,6 +275,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Added to make the template file in project_templates/ available to all apps
+"""
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -290,6 +292,7 @@ TEMPLATES = [
         },
     },
 ]
+"""
 
 
 # Added to manage how long the portfolio object is kept before being refreshed.

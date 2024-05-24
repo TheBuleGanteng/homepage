@@ -58,8 +58,29 @@
             <div class='col col-lg-2 col-3'>
                 <div class='row content-start'>
                     <div>
-                        <a href='{% url "brokerage:sell" %}' class='btn btn-success w-100 mb-1 p-0'>Sell {{ company_profile.symbol }}</a>
-                        <a href='{% url "brokerage:buy" %}' class='btn btn-success w-100 mb-1 p-0'>Buy {{ company_profile.symbol }}</a>                
+                        <!-- conditional: if user has shares in stock show enabled "sell" button, otherwise, show disabled "sell" button -->
+                        {% if company_profile.can_sell %}
+                        <form action="{% url 'brokerage:sell' %}" method="get" class="d-inline">
+                            <button type="submit" class="btn btn-success w-100 mb-1 p-0">Sell {{ company_profile.symbol }}</button>
+                        </form>
+                        {% else %}
+                            <span data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No shares to sell">
+                                <button type="button" class="btn btn-success w-100 mb-1 p-0" disabled>Sell {{ company_profile.symbol }}</button>
+                            </span>
+                        {% endif %}
+                        <!-- /conditional: if user has shares in stock show enabled "sell" button, otherwise, show disabled "sell" button -->
+
+                        <!-- conditional: if user has cash > price per share enable buy button. Otherwise, disable buy button. -->
+                        {% if company_profile.can_buy %}
+                            <form action="{% url 'brokerage:buy' %}" method="get" class="d-inline">
+                                <button type="submit" class="btn btn-success w-100 mb-1 p-0">Buy {{ company_profile.symbol }}</button>
+                            </form>
+                        {% else %}
+                        <span data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Insufficient cash to buy">
+                            <button type="button" class="btn btn-success w-100 mb-1 p-0" disabled>Buy {{ company_profile.symbol }}</button>
+                        </span>
+                        {% endif %}
+                        <!-- /conditional: if user has cash > price per share enable buy button. Otherwise, disable buy button. -->
                     </div>
                 </div>
             </div>
