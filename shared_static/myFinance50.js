@@ -609,8 +609,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        
-        
+        if (email) {
+            email.addEventListener('input', function() {
+                jsEnableRegisterSubmitButton();
+            });
+        }
+
+        /* DISABLED
         function debouncedEmailValidation() {
             submitButton.disabled = true;
             // Immediately disable the submit button when input changes
@@ -634,21 +639,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (username) {
-            username.addEventListener('input', debounce(debouncedUsernameValidation, 300));
+            username.addEventListener('input', debounce(debouncedUsernameValidation, 200));
         }
         
-        if (password) {
-            password.addEventListener('input', function() {
-                jsPasswordValidation();
+        function debouncedPasswordValidation() {
+            submitButton.disabled = true;
+            // Immediately disable the submit button when input changes
+            jsPasswordValidation().then(() => { 
                 jsEnableRegisterSubmitButton();
-            });
+           });
+        }
+
+        if (password) {
+            password.addEventListener('input', debounce(debouncedPasswordValidation, 50));
+        }
+        
+        
+        function debouncedPasswordConfirmationValidation() {
+            submitButton.disabled = true;
+            // Immediately disable the submit button when input changes
+            jsPasswordConfirmationValidation().then(() => { 
+                jsEnableRegisterSubmitButton();
+           });
         }
 
         if (password_confirmation) {
-            password_confirmation.addEventListener('input', function() {
-                jsPasswordConfirmationValidation();
-                jsEnableRegisterSubmitButton();
-            });
+            password_confirmation.addEventListener('input', debounce(debouncedPasswordConfirmationValidation, 50));
         }
     } 
     // /javascript for register ----------------------------------------------
@@ -705,6 +721,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function definitions -------------------------------------------------------------------    
 
+    /*
     // The function below provides feedback to the user re: whether a user-inputted email address is already associated with an account.
     function jsEmailValidation() {
         return new Promise((resolve, reject) => {
@@ -760,6 +777,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    */
 
 
 
@@ -799,6 +817,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (password === '') {
                 resetColor([regLiMinTotChars, regLiMinLetters, regLiMinNum, regLiMinSym]);
                 return resolve(false);
+                /*
+                submit_enabled = false;
+                resolve(submit_enabled);
+                */
             }
             // If password is not blank, then toss the value over to the /check_password_strength in app.py
             fetch('/myfinance50/check_password_valid/', {
@@ -885,7 +907,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // If password is blank, reset the color of the elements below and return false.
             if (password_confirmation === '') {
                 resetColor([password_confirmation_validation_match]);
-                return resolve(false);
+                submit_enabled = false;
+                console.log(`running jsPasswordConfirmationValidation()... password_confirmation is: ${ password_confirmation }`);
+                console.log(`running jsPasswordConfirmationValidation()... submit_enabled is: ${ submit_enabled }`);
+                resolve(submit_enabled);
             }
             // If password is not blank, then toss the value over to the /check_password_strength in app.py
             fetch('/myfinance50/check_password_valid/', {
@@ -903,7 +928,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 let submit_enabled = true;
-                if (data.confirmation_match == true) {
+                if (data.confirmation_match == true && data.checks_passed.length == 4) {
+                    console.log(`running jsPasswordConfirmationValidation()... data.confirmation_match is: ${ data.confirmation_match }`);
+                    console.log(`running jsPasswordConfirmationValidation()... setting color to green`);
                     setColor(password_confirmation_validation_match);
                 } else {
                     resetColor(password_confirmation_validation_match);
@@ -1144,12 +1171,15 @@ document.addEventListener('DOMContentLoaded', function() {
                                 div.innerHTML = `${item.symbol} - ${item.name} - ${item.exchange_short}<br/>`;
                                 div.classList.add('btn', 'btn-outline-secondary', 'custom-btn-company-search');
                                 div.addEventListener('click', function() {
+                                    console.log(`Running jsSymbolLiveSearch() ... user clicked LiveSearch result`);
                                     symbol.blur(); // Remove focus from the input
                                     symbol.value = item.symbol; // Populate the symbol input field with the clicked symbol
                                     symbol_live_search.innerHTML = '';
                                     symbol_live_search.classList.add('d-none');
                                     var form = symbol.closest('form'); // Select the closest form (e.g. the one containing 'symbol')
+                                    console.log(`Running jsSymbolLiveSearch() ... form.id is: ${ form.id }`);
                                     if (form && form.id === 'QuoteForm') { // If that form is QuoteForm, auto-submit. Do not auto-submit if this function is used elsewhere, such as BuyForm. 
+                                        console.log(`Running jsSymbolLiveSearch() ... auto-submitting form`);
                                         form.submit();
                                     }
                                 });

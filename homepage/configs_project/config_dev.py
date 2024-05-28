@@ -3,7 +3,7 @@ import os
 
 CSS_CACHE_ENABLED = False
 DEBUG = True
-SECURE_SSL_REDIRECT = True # Must = True for deployment. If user tries to access via http, user is redirected to https
+SECURE_SSL_REDIRECT = False # Must = True for deployment. If user tries to access via http, user is redirected to https
 
 # Logging configurations
 log_to_file = False

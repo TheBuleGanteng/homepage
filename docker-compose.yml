@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   web:
@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/app
       - ./gitignored:/etc/nginx/certs # Ensure SSL certs are accessible
-      - static_volume:/app/staticfiles
+      - static_volume:/app/collected_static
       - media_volume:/app/media
       - ./logs:/app/logs # Added in logging setup
     expose:
@@ -29,7 +29,7 @@ services:
       dockerfile: Dockerfile.nginx
     volumes:
       - ./gitignored:/certs  # This line maps the local 'gitignored' directory to '/certs' inside the container
-      - static_volume:/app/staticfiles
+      - static_volume:/app/collected_static
       - media_volume:/app/media
       - ./logs:/var/log/nginx # Added in logging setup
     ports:

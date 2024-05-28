@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.10.12
+FROM python:latest
 
 # Set the working directory in the container
 WORKDIR /app
@@ -13,19 +13,28 @@ RUN echo "Installing dependencies..." \
     && echo "Dependencies installed successfully."
 
 # Copy Supervisor configuration file into the container at the custom location
-COPY supervisor/supervisord.conf /app/supervisor/supervisord.conf
+COPY supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Collect static files into the STATIC ROOT specified in settings.py
-RUN echo "Collecting static files..." \
-    && python manage.py collectstatic --noinput --verbosity 2 \
-    && chmod -R 755 /app/staticfiles \
-    && echo "Static files collected successfully."
+# Remove old static files, recreate the directory, and verify the content
+RUN echo "Removing old static files..."
+RUN rm -rf /app/collected_static/*
+RUN echo "Old static files removed successfully."
+RUN mkdir -p /app/collected_static
+RUN ls -l /app/collected_static/
+
+# Collect static files into the STATIC ROOT specified in settings.py and verify the content
+RUN echo "Collecting static files..."
+RUN python manage.py collectstatic --noinput --verbosity 3
+RUN echo "Setting permissions for static files..."
+RUN chmod -R 755 /app/collected_static
+RUN echo "Static files collected successfully." 
+RUN ls -l /app/collected_static/
 
 # Make directory for supervisor logs
 RUN mkdir -p /var/log/supervisor
 
 # Expose port 8000 for gunicorn
-ENV PORT 8000
+EXPOSE 8000
 
-# Use gunicorn to run the application with SSL certificates (production version is listed at top, dev version is below)
-CMD ["supervisord", "-c", "/app/supervisor/supervisord.conf"]
+# Use gunicorn to run the application with Supervisor
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

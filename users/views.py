@@ -255,23 +255,25 @@ def check_password_valid_view(request):
     # Step 3: Start performing checks, adding the name of each check passed to the checks_passed array.
     if len(password) >= pw_req_length:
             checks_passed.append('pw_reg_length')
-            logger.debug(f'running users app, check_password_valid_view(request) ... appended pw_reg_length to checks_passed array. Length of array is: { len(checks_passed) }.')
+            logger.debug(f'running users app, check_password_valid_view(request) ... password is: { password } appended pw_reg_length to checks_passed array. Length of array is: { len(checks_passed) }.')
     if len(re.findall(r'[a-zA-Z]', password)) >= pw_req_letter:
             checks_passed.append('pw_req_letter')
-            logger.debug(f'running users app, check_password_valid_view(request) ... appended pw_req_letter to checks_passed array. Length of array is: { len(checks_passed) }. ')
+            logger.debug(f'running users app, check_password_valid_view(request) ... password is: { password } appended pw_req_letter to checks_passed array. Length of array is: { len(checks_passed) }. ')
     if len(re.findall(r'[0-9]', password)) >= pw_req_num:
             checks_passed.append('pw_req_num')
-            logger.debug(f'running users app, check_password_valid_view(request) ... appended pw_req_num to checks_passed array. Length of array is: { len(checks_passed) }. ')
+            logger.debug(f'running users app, check_password_valid_view(request) ... password is: { password } appended pw_req_num to checks_passed array. Length of array is: { len(checks_passed) }. ')
     if len(re.findall(r'[^a-zA-Z0-9]', password)) >= pw_req_symbol:
             checks_passed.append('pw_req_symbol')
-            logger.debug(f'running users app, check_password_valid_view(request) ... appended pw_req_symbol to checks_passed array. Length of array is: { len(checks_passed) }. ')
+            logger.debug(f'running users app, check_password_valid_view(request) ... password is: { password } appended pw_req_symbol to checks_passed array. Length of array is: { len(checks_passed) }. ')
     logger.debug(f'running users app, check_password_valid_view(request) ... checks_passed array contains: { checks_passed }. Length of array is: { len(checks_passed) }.')
 
     # Step 4: Ensure password and confirmation match
-    if password == password_confirmation:
+    if password == password_confirmation:    
         confirmation_match = True
     else:
         confirmation_match = False
+    logger.debug(f'running users app, check_password_valid_view(request) ... password is: { password }')
+    logger.debug(f'running users app, check_password_valid_view(request) ... password_confirmation is: { password_confirmation }')
     logger.debug(f'running users app, check_password_valid_view(request) ... confirmation_match is: { confirmation_match }')
 
     # Step 5: Pass the checks_passed array and confirmation_match back to JavaScript
@@ -336,8 +338,11 @@ def login_view(request):
                 logger.debug('running users app login_view ... user logged in, reversing to index')
                 messages.success(request, f'Welcome { user.get_username() }, you are now logged in to { PROJECT_NAME }.')
                 
+                # Log session data
+                logger.debug(f'running users app login_view ... session data before redirect: {request.session.items()}')
                 # Add debug information for session keys
-                logger.debug(f'Session key after login in register_confirmation_view: {request.session.session_key}')
+                logger.debug(f'running users app login_view ... session key after login in register_confirmation_view: {request.session.session_key}')
+                
                 
                 return redirect('brokerage:index')
         

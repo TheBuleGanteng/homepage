@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 import logging
 import os
 from pathlib import Path
+import time
 
 # Assuming your .env file is at the root of your Django project, adjust the path as necessary
 dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'gitignored', '.env')
@@ -31,15 +32,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Use .env file to set project environment, with 'dev' as the fallback
 SECRET_KEY = os.getenv('SECRET_KEY')
 PROJECT_ENV = os.getenv('ENVIRONMENT', 'development')
-ALLOWED_HOSTS = ['127.0.0.1', '34.173.7.164', 'localhost', 'www.mattmcdonnell.net', 'mattmcdonnell.net',] # Must update prior to prod
+ALLOWED_HOSTS = [
+    '127.0.0.1',       # IPv4 loopback address
+    '34.173.7.164',    # External IP address
+    'localhost',       # Localhost
+    'www.mattmcdonnell.net', 'mattmcdonnell.net',  # Your domain names
+    'web',             # Docker service name
+    '172.25.0.2', '172.25.0.3',  # Internal Docker IPs (can be dynamic)
+    '[::1]'            # IPv6 loopback address
+    ] # Must update prior to prod
 TOKEN_TIMEOUT = int(os.getenv('TOKEN_TIMEOUT')) # Sets the expiration of a unique token generated via Django's PasswordResetTokenGenerator
 SESSION_COOKIE_AGE = int(os.getenv('SESSION_COOKIE_AGE'))
 SESSION_EXPIRE_AT_BROWSER_CLOSE = os.getenv('SESSION_EXPIRE_AT_BROWSER_CLOSE')
 SESSION_SAVE_EVERY_REQUEST = os.getenv('SESSION_SAVE_EVERY_REQUEST')
 PHONENUMBER_DEFAULT_REGION = 'ID'
 PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
-
-
+#STATIC_VERSION = int(time.time()) # Used to affix a timestamp-based version number to the JS file, ensuring the most updated one is used.
+#print(f'running settings.py ... STATIC_VERSION IS: { STATIC_VERSION }')
 
 # Important security-related settings
 CSRF_COOKIE_SECURE=True # Must = True for deployment. Sends CSRF cookies only over HTTPS
@@ -117,6 +126,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                #'utils.context_processors.static_version',
             ],
         },
     },
@@ -170,7 +180,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = "static/" # This tells django for look for static files in any folder called 'static'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #This tells django/whitenoise/gunicorn where to consolidate the static files for easier serving.
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static') #This tells django/whitenoise/gunicorn where to consolidate the static files for easier serving.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'shared_static'), # Ensures that the contents of shared_static/ are also collected when running 'manage.py collectstatic'
 ]
