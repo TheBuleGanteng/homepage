@@ -17,7 +17,7 @@ import os
 from pathlib import Path
 import time
 
-# Assuming your .env file is at the root of your Django project, adjust the path as necessary
+# Path to .env file
 dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'gitignored', '.env')
 load_dotenv(dotenv_path)
 
