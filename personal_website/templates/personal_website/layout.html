@@ -1,17 +1,20 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="https://schema.org/Organization">
 
     <head>
         <!-- google analytics tag (gtag.js) and JS -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-62CJ8QX96T"></script>
         <script src='{% static "personal_website/javascript/googleAnalytics.js" %}'></script>
         <!-- /google analytics tag (gtag.js) and JS -->
-        
+
         <!-- general settings -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <meta charset='utf-8'>
+        <meta name='viewport' content='initial-scale=1, width=device-width'>
+        <meta itemprop="logo" content='{% static "personal_website/assets/profile_logo.jpg" %}'>
+        <meta itemprop='image' content='{% static "personal_website/assets/profile_logo.jpg" %}'>
+        <meta itemprop='name' content='Matt McDonnell'>
         <link rel='icon' type='image/x-icon' href='{% static "personal_website/assets/profile_logo.jpg" %}'>
         <!-- general settings -->
 
