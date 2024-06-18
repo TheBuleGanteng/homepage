@@ -13,8 +13,8 @@ from googleapiclient.discovery import build
 from email.mime.text import MIMEText
 import os
 import xml.etree.ElementTree as ET
-import phonenumbers
-from phonenumbers import geocoder
+#import phonenumbers
+#from phonenumbers import geocoder
 
 
 # Configures logger

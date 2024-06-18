@@ -324,8 +324,7 @@ def login_view(request):
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
             logger.debug(f'running users app, login_view ... email is: { email }')
-            logger.debug(f'running users app, login_view ... password is: { password }')
-        
+            
             # Runs the authenticate function on username and password and saves the result as the variable "user"
             user = authenticate(request, username=email, password=password)
             logger.debug(f'running users app, login_view ... retrieved user object: { user }')
